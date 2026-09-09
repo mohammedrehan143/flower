@@ -257,16 +257,26 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
+            {/* Radiant Champagne to Deep Atelier Gold */}
             <linearGradient id="petalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F5DFD7" />
-              <stop offset="60%" stopColor="#E0A899" />
-              <stop offset="100%" stopColor="#C48B81" />
+              <stop offset="0%" stopColor="#FFF4D0" />
+              <stop offset="35%" stopColor="#F5D77F" />
+              <stop offset="70%" stopColor="#D4AF37" />
+              <stop offset="100%" stopColor="#997A15" />
             </linearGradient>
+            {/* Luminous Warm Imperial Gold */}
             <linearGradient id="petalGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#EBD7CD" />
-              <stop offset="70%" stopColor="#D49A8D" />
-              <stop offset="100%" stopColor="#9E5042" />
+              <stop offset="0%" stopColor="#FDF0C8" />
+              <stop offset="40%" stopColor="#E5C158" />
+              <stop offset="75%" stopColor="#C59B27" />
+              <stop offset="100%" stopColor="#7E6010" />
             </linearGradient>
+            {/* Gold Floral Center Glow */}
+            <radialGradient id="goldCenterGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FFF9E6" />
+              <stop offset="50%" stopColor="#E5C158" />
+              <stop offset="100%" stopColor="#8C6D1F" />
+            </radialGradient>
             <linearGradient id="stemGrad" x1="0%" y1="100%" x2="0%" y2="0%">
               <stop offset="0%" stopColor="#2E4C3A" />
               <stop offset="100%" stopColor="#7E927F" />
@@ -342,8 +352,8 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
             />
 
             {/* Inner Core Floral Bud */}
-            <circle cx="0" cy="0" r="11" fill="#C5A880" />
-            <circle cx="0" cy="0" r="6" fill="#4A1521" />
+            <circle cx="0" cy="0" r="11" fill="url(#goldCenterGrad)" stroke="#FFE89E" strokeWidth="1" />
+            <circle cx="0" cy="0" r="5" fill="#4A1521" />
           </g>
 
           {/* Organic Seed at ground */}
@@ -352,7 +362,7 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
             cx="100"
             cy="185"
             r="6"
-            fill="#C5A880"
+            fill="url(#goldCenterGrad)"
             stroke="#0D1E17"
             strokeWidth="1.5"
           />
