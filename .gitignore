@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# root temporary scratch images
+/deskbg.png
+/f1.avif
+/hero.png
+/herobg.png
+/image copy.png
+/image.png
+/components/
+/components.json
+

@@ -1,26 +1,159 @@
 @import "tailwindcss";
 
+@theme {
+  --font-cinzel: var(--font-cinzel), "Cinzel", Georgia, serif;
+  --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-calligraphy: var(--font-calligraphy), "Pinyon Script", "Alex Brush", cursive;
+
+  --color-ivory: #FAF7F2;
+  --color-cream: #F5EFEB;
+  --color-sand: #ECE3D7;
+  --color-linen: #F0EAE1;
+
+  --color-botanical-950: #0D1E17;
+  --color-botanical-900: #0D1E17;
+  --color-botanical-850: #0D1E17;
+  --color-botanical-800: #0D1E17;
+  --color-botanical-700: #0D1E17;
+
+  --color-sage: #7E927F;
+  --color-sage-light: #C4CEC3;
+  --color-sage-soft: #EFF3EF;
+
+  --color-blush-50: #FCF8F5;
+  --color-blush-100: #F6EBE5;
+  --color-blush-200: #EBD7CD;
+  --color-rose-dusty: #C48B81;
+  --color-rose-deep: #A05244;
+
+  --color-burgundy: #4A1521;
+  --color-burgundy-light: #6A2132;
+  --color-gold: #C5A880;
+  --color-gold-light: #E4D3BD;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF7F2;
+  --foreground: #0D1E17;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom Architectural Botanical Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::-webkit-scrollbar-track {
+  background: #F5EFEB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4CEC3;
+  border-radius: 9999px;
+  border: 2px solid #F5EFEB;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7E927F;
+}
+
+/* Base resets & typography */
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury magnetic hover interaction */
+.btn-magnetic {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+.btn-magnetic:hover {
+  transform: translateY(-2px);
+}
+.btn-magnetic:active {
+  transform: translateY(0);
+}
+
+/* Petal Dropdown Cascading Animation */
+@keyframes petalDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) rotate(-2deg);
+  }
+  60% {
+    transform: translateY(3px) rotate(0.8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.petal-drop-item {
+  animation: petalDrop 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+.font-calligraphy {
+  font-family: var(--font-calligraphy), "Pinyon Script", "Alex Brush", cursive;
+}
+
+/* Floating Petals & Leaves Organic Ambient Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-4deg);
+  }
+}
+
+@keyframes spinStamp {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 9s ease-in-out infinite;
+}
+
+.animate-stamp-spin {
+  animation: spinStamp 35s linear infinite;
+}
+
+/* Deckle Edge Paper Silhouette */
+.deckle-border {
+  box-shadow: 0 10px 28px -4px rgba(13, 30, 23, 0.08), 0 2px 6px -1px rgba(13, 30, 23, 0.04);
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
