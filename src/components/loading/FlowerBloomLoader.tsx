@@ -79,9 +79,10 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
       });
 
       if (petalsRef.current) {
-        gsap.set(petalsRef.current.children, {
+        const petals = petalsRef.current.querySelectorAll("path");
+        gsap.set(petals, {
           scale: 0,
-          transformOrigin: "center bottom",
+          transformOrigin: "0 0",
           opacity: 0,
         });
       }
@@ -97,13 +98,20 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
       gsap.set(textRef.current, { opacity: 0, y: 10 });
       gsap.set(brandRef.current, { opacity: 0, y: 12 });
 
-      // Step 1: Golden seed emerges (0.0s - 0.25s)
+      // Step 1: Golden seed emerges
       tl.to(seedRef.current, {
         scale: 1,
         duration: 0.25,
         ease: "back.out(2)",
       })
-        // Step 2: Gilded stem shoots upward (0.2s - 0.55s)
+        // Step 2: Minimal botanical stem shoots upward
+        .to(
+          stemRef.current,
+          {
+            strokeDashoffset: 200,
+            duration: 0,
+          }
+        )
         .to(
           stemRef.current,
           {
@@ -113,49 +121,46 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
           },
           "-=0.05"
         )
-        // Step 3: Bronze gold leaves expand (0.35s - 0.65s)
+        // Step 3: Minimal leaves unfold
         .to(
           [leafLeftRef.current, leafRightRef.current],
           {
             scale: 1,
-            duration: 0.3,
+            duration: 0.25,
             stagger: 0.08,
             ease: "back.out(2)",
           },
-          "-=0.2"
+          "-=0.15"
         )
-        // Step 4: Metallic Shiny Golden petals bloom in rapid organic splendor
+        // Step 4: Simple, elegant 5 Golden Petals bloom in gentle sequence
         .to(
-          petalsRef.current?.children || [],
+          petalsRef.current ? petalsRef.current.querySelectorAll("path") : [],
           {
             scale: 1,
             opacity: 1,
-            duration: 0.55,
-            stagger: {
-              each: 0.035,
-              from: "random",
-            },
-            ease: "elastic.out(1.1, 0.65)",
+            duration: 0.45,
+            stagger: 0.05,
+            ease: "power2.out",
           },
-          "-=0.15"
+          "-=0.1"
         )
-        // Step 5: Sparkling jeweled stamen and central gold pistil pop in
+        // Step 5: Clean minimal golden center bud appears
         .to(
           centerJewelRef.current,
           {
             scale: 1,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "back.out(2)",
           },
-          "-=0.35"
+          "-=0.2"
         )
-        // Step 6: Concurrent luxury numeric counter (01 -> 100)
+        // Step 6: Luxury numeric counter (01 -> 100)
         .to(
           counterObj,
           {
             value: 100,
-            duration: 1.2,
+            duration: 1.1,
             ease: "power2.inOut",
             onUpdate: () => {
               if (counterRef.current) {
@@ -172,23 +177,23 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
           {
             opacity: 1,
             y: 0,
-            duration: 0.4,
+            duration: 0.35,
             stagger: 0.08,
             ease: "power2.out",
           },
-          "-=0.6"
+          "-=0.5"
         )
-        // Step 8: Golden bloom shimmer pulse
+        // Step 8: Gentle floral bloom settle
         .to(
           flowerCenterRef.current,
           {
-            scale: 1.06,
-            duration: 0.25,
+            scale: 1.05,
+            duration: 0.2,
             ease: "power1.inOut",
           },
           "+=0.05"
         )
-        // Step 9: Immediate unlock of interactions & Curtains split open
+        // Step 9: Unlock interactions & Curtains part smoothly
         .add(() => {
           if (containerRef.current) {
             containerRef.current.style.pointerEvents = "none";
@@ -197,9 +202,9 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
         .to(
           flowerCenterRef.current,
           {
-            scale: 1.12,
+            scale: 1.1,
             opacity: 0,
-            duration: 0.35,
+            duration: 0.3,
             ease: "power2.in",
           }
         )
@@ -207,16 +212,16 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
           curtainTopRef.current,
           {
             yPercent: -100,
-            duration: 0.55,
+            duration: 0.5,
             ease: "power3.inOut",
           },
-          "-=0.25"
+          "-=0.2"
         )
         .to(
           curtainBottomRef.current,
           {
             yPercent: 100,
-            duration: 0.55,
+            duration: 0.5,
             ease: "power3.inOut",
           },
           "<"
@@ -301,320 +306,130 @@ export default function FlowerBloomLoader({ onComplete }: FlowerBloomLoaderProps
       <div
         ref={flowerCenterRef}
         style={{ opacity: 0 }}
-        className="relative z-10 w-48 h-48 md:w-60 md:h-60 flex items-center justify-center pointer-events-none will-change-transform"
+        className="relative z-10 w-40 h-40 md:w-48 md:h-48 flex items-center justify-center pointer-events-none will-change-transform"
       >
         <svg
           viewBox="0 0 200 200"
-          className="w-full h-full drop-shadow-[0_12px_35px_rgba(212,175,55,0.35)]"
+          className="w-full h-full drop-shadow-[0_8px_25px_rgba(212,175,55,0.25)]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            {/* Specular Glow Filter for Metallic Reflections */}
-            <filter id="metallicGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#FFE57F" floodOpacity="0.35" />
-            </filter>
-
-            {/* --- TRUE METALLIC SHINY GOLD GRADIENT 1 (Vertical Reflection) --- */}
-            <linearGradient id="metalShinyGold1" x1="20%" y1="0%" x2="80%" y2="100%">
-              <stop offset="0%" stopColor="#FFFDF7" />       {/* Pure diamond highlight */}
-              <stop offset="15%" stopColor="#FFE79A" />      {/* Pale champagne gold */}
-              <stop offset="32%" stopColor="#F5C43C" />      {/* 24K bright gold */}
-              <stop offset="46%" stopColor="#FFFFFF" />      {/* Ultra-shiny mirror specular highlight! */}
-              <stop offset="62%" stopColor="#D49F16" />      {/* Molten warm gold */}
-              <stop offset="82%" stopColor="#8F660A" />      {/* Burnished bronze metallic shadow */}
-              <stop offset="100%" stopColor="#4D3604" />     {/* Deep core gold */}
+            {/* Soft Warm Luxury Gold Gradient */}
+            <linearGradient id="simpleGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF6D6" />
+              <stop offset="45%" stopColor="#E5C158" />
+              <stop offset="100%" stopColor="#B38A22" />
             </linearGradient>
 
-            {/* --- TRUE METALLIC SHINY GOLD GRADIENT 2 (Diagonal Luster) --- */}
-            <linearGradient id="metalShinyGold2" x1="80%" y1="0%" x2="20%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFC" />
-              <stop offset="18%" stopColor="#FEDF82" />
-              <stop offset="35%" stopColor="#EAB327" />
-              <stop offset="50%" stopColor="#FFFCE6" />      {/* Mirror shine streak */}
-              <stop offset="68%" stopColor="#C99516" />
-              <stop offset="86%" stopColor="#825B08" />
-              <stop offset="100%" stopColor="#3F2A02" />
-            </linearGradient>
-
-            {/* --- TRUE METALLIC SHINY GOLD GRADIENT 3 (Horizontal Polish) --- */}
-            <linearGradient id="metalShinyGold3" x1="0%" y1="35%" x2="100%" y2="65%">
+            {/* Floral Pistil Center */}
+            <radialGradient id="centerGoldGrad" cx="40%" cy="40%" r="60%">
               <stop offset="0%" stopColor="#FFFDF0" />
-              <stop offset="22%" stopColor="#FED768" />
-              <stop offset="42%" stopColor="#E0A71E" />
-              <stop offset="54%" stopColor="#FFFFFF" />      {/* Specular gleam */}
-              <stop offset="72%" stopColor="#BC8B11" />
-              <stop offset="100%" stopColor="#543705" />
-            </linearGradient>
-
-            {/* Chiseled Gilded Edge Stroke (Reflective Bevel) */}
-            <linearGradient id="goldBevelRim" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
-              <stop offset="25%" stopColor="#FFECA6" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.7" />
-              <stop offset="75%" stopColor="#FFFFFF" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#8E6A0E" stopOpacity="0.8" />
-            </linearGradient>
-
-            {/* Petal Spine (Reflective 3D Midrib Highlight) */}
-            <linearGradient id="goldSpineGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#FFF6CE" stopOpacity="0.85" />
-            </linearGradient>
-
-            {/* Multi-Faceted Jeweled Gold Core (Radial Specular Point) */}
-            <radialGradient id="goldJeweledDome" cx="35%" cy="30%" r="70%">
-              <stop offset="0%" stopColor="#FFFFFF" />       {/* Direct specular reflection point */}
-              <stop offset="22%" stopColor="#FFE888" />
-              <stop offset="50%" stopColor="#E2B129" />
-              <stop offset="80%" stopColor="#9E7311" />
-              <stop offset="100%" stopColor="#4A3405" />
+              <stop offset="55%" stopColor="#E5C158" />
+              <stop offset="100%" stopColor="#8C6D1F" />
             </radialGradient>
 
-            {/* Gilded Botanical Stem Gradient */}
-            <linearGradient id="gildedStemGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stopColor="#1E3224" />
-              <stop offset="45%" stopColor="#545B32" />
-              <stop offset="80%" stopColor="#B3984A" />
-              <stop offset="100%" stopColor="#EED27F" />
-            </linearGradient>
-
-            {/* Golden Forest Leaf */}
-            <linearGradient id="gildedLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#D4AF37" />
-              <stop offset="40%" stopColor="#6C8262" />
-              <stop offset="100%" stopColor="#25382B" />
+            {/* Botanical Stem Gradient */}
+            <linearGradient id="simpleStemGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stopColor="#25382B" />
+              <stop offset="60%" stopColor="#5E7560" />
+              <stop offset="100%" stopColor="#A8BCA5" />
             </linearGradient>
           </defs>
 
-          {/* Gilded Botanical Stem */}
+          {/* Minimal Botanical Stem */}
           <path
             ref={stemRef}
-            d="M 100 185 Q 96 140 100 100"
-            stroke="url(#gildedStemGrad)"
-            strokeWidth="3.5"
+            d="M 100 175 Q 98 138 100 100"
+            stroke="url(#simpleStemGrad)"
+            strokeWidth="2.5"
             strokeLinecap="round"
           />
 
-          {/* Left Leaf with Gold Rim */}
+          {/* Left Leaf */}
           <path
             ref={leafLeftRef}
-            d="M 98 145 C 75 140 70 120 78 115 C 88 118 95 130 98 145 Z"
-            fill="url(#gildedLeafGrad)"
+            d="M 99 142 C 82 138 78 124 85 119 C 93 121 97 131 99 142 Z"
+            fill="#5E7560"
             stroke="#D4AF37"
-            strokeWidth="0.75"
-            opacity="0.95"
-          />
-
-          {/* Right Leaf with Gold Rim */}
-          <path
-            ref={leafRightRef}
-            d="M 100 135 C 122 130 130 110 120 105 C 110 108 102 122 100 135 Z"
-            fill="url(#gildedLeafGrad)"
-            stroke="#D4AF37"
-            strokeWidth="0.75"
+            strokeWidth="0.6"
             opacity="0.9"
           />
 
-          {/* --- RADIATING METALLIC SHINY GOLDEN PETALS --- */}
-          <g ref={petalsRef} transform="translate(100, 95)" filter="url(#metallicGoldGlow)">
-            {/* Outer Petal 1 (North) */}
-            <g>
-              <path
-                d="M 0 0 C -14 -15 -14 -42 0 -48 C 14 -42 14 -15 0 0 Z"
-                fill="url(#metalShinyGold1)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q -1 -24 0 -44" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
+          {/* Right Leaf */}
+          <path
+            ref={leafRightRef}
+            d="M 101 132 C 118 128 122 114 115 109 C 107 111 103 121 101 132 Z"
+            fill="#4D634F"
+            stroke="#D4AF37"
+            strokeWidth="0.6"
+            opacity="0.85"
+          />
 
-            {/* Outer Petal 2 (North-East) */}
-            <g>
+          {/* Clean 5-Petal Golden Blossom */}
+          <g ref={petalsRef} transform="translate(100, 100)">
+            {/* Petal 1 (North - 0 deg) */}
+            <g transform="rotate(0)">
               <path
-                d="M 0 0 C 10 -18 28 -34 38 -25 C 40 -12 20 5 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q 18 -15 34 -22" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 3 (East) */}
-            <g>
-              <path
-                d="M 0 0 C 18 -10 42 -10 46 4 C 40 16 16 12 0 0 Z"
-                fill="url(#metalShinyGold3)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q 22 -2 42 3" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 4 (South-East) */}
-            <g>
-              <path
-                d="M 0 0 C 18 10 32 30 22 38 C 10 38 -4 18 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q 16 18 19 34" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 5 (South) */}
-            <g>
-              <path
-                d="M 0 0 C 12 16 10 38 0 42 C -10 38 -12 16 0 0 Z"
-                fill="url(#metalShinyGold1)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q 1 20 0 38" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 6 (South-West) */}
-            <g>
-              <path
-                d="M 0 0 C -18 10 -32 30 -22 38 C -10 38 4 18 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q -16 18 -19 34" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 7 (West) */}
-            <g>
-              <path
-                d="M 0 0 C -18 -10 -42 -10 -46 4 C -40 16 -16 12 0 0 Z"
-                fill="url(#metalShinyGold3)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q -22 -2 -42 3" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Outer Petal 8 (North-West) */}
-            <g>
-              <path
-                d="M 0 0 C -10 -18 -28 -34 -38 -25 C -40 -12 -20 5 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.9"
-              />
-              <path d="M 0 0 Q -18 -15 -34 -22" stroke="url(#goldSpineGrad)" strokeWidth="0.8" strokeLinecap="round" opacity="0.85" />
-            </g>
-
-            {/* Inner Layer Petal Rosette (Adds Rich Dimensional Gold Depth) */}
-            <g transform="rotate(22.5)">
-              <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold1)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
+                d="M 0 0 C -12 -10 -15 -30 0 -36 C 15 -30 12 -10 0 0 Z"
+                fill="url(#simpleGoldGrad)"
+                stroke="#FFF7D6"
+                strokeWidth="0.8"
               />
             </g>
-            <g transform="rotate(67.5)">
+            {/* Petal 2 (72 deg) */}
+            <g transform="rotate(72)">
               <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
+                d="M 0 0 C -12 -10 -15 -30 0 -36 C 15 -30 12 -10 0 0 Z"
+                fill="url(#simpleGoldGrad)"
+                stroke="#FFF7D6"
+                strokeWidth="0.8"
               />
             </g>
-            <g transform="rotate(112.5)">
+            {/* Petal 3 (144 deg) */}
+            <g transform="rotate(144)">
               <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold3)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
+                d="M 0 0 C -12 -10 -15 -30 0 -36 C 15 -30 12 -10 0 0 Z"
+                fill="url(#simpleGoldGrad)"
+                stroke="#FFF7D6"
+                strokeWidth="0.8"
               />
             </g>
-            <g transform="rotate(157.5)">
+            {/* Petal 4 (216 deg) */}
+            <g transform="rotate(216)">
               <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
+                d="M 0 0 C -12 -10 -15 -30 0 -36 C 15 -30 12 -10 0 0 Z"
+                fill="url(#simpleGoldGrad)"
+                stroke="#FFF7D6"
+                strokeWidth="0.8"
               />
             </g>
-            <g transform="rotate(202.5)">
+            {/* Petal 5 (288 deg) */}
+            <g transform="rotate(288)">
               <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold1)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
-              />
-            </g>
-            <g transform="rotate(247.5)">
-              <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
-              />
-            </g>
-            <g transform="rotate(292.5)">
-              <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold3)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
-              />
-            </g>
-            <g transform="rotate(337.5)">
-              <path
-                d="M 0 0 C -9 -10 -9 -28 0 -34 C 9 -28 9 -10 0 0 Z"
-                fill="url(#metalShinyGold2)"
-                stroke="url(#goldBevelRim)"
-                strokeWidth="0.75"
-                opacity="0.95"
+                d="M 0 0 C -12 -10 -15 -30 0 -36 C 15 -30 12 -10 0 0 Z"
+                fill="url(#simpleGoldGrad)"
+                stroke="#FFF7D6"
+                strokeWidth="0.8"
               />
             </g>
           </g>
 
-          {/* Jeweled Center Core & Sparkling Gold Stamen */}
-          <g ref={centerJewelRef} transform="translate(100, 95)">
-            {/* Outer Stamen Pearl Beads (12 Golden Pearl Pistils) */}
-            <circle cx="0" cy="-14" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="7" cy="-12" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="12" cy="-7" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="14" cy="0" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="12" cy="7" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="7" cy="12" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="0" cy="14" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="-7" cy="12" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="-12" cy="7" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="-14" cy="0" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="-12" cy="-7" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-            <circle cx="-7" cy="-12" r="1.5" fill="#FFFCE6" stroke="#9E7311" strokeWidth="0.5" />
-
-            {/* Central Polished 24K Gold Dome */}
-            <circle cx="0" cy="0" r="11" fill="url(#goldJeweledDome)" stroke="url(#goldBevelRim)" strokeWidth="1.2" />
-            {/* Deep Ruby Velvet Accent Core */}
-            <circle cx="0" cy="0" r="5" fill="#46101D" stroke="#FFE788" strokeWidth="0.75" />
-            {/* Specular White Center Pinpoint */}
-            <circle cx="-1.5" cy="-1.5" r="1" fill="#FFFFFF" opacity="0.9" />
+          {/* Minimalist Center Floral Pistil */}
+          <g ref={centerJewelRef} transform="translate(100, 100)">
+            <circle cx="0" cy="0" r="5.5" fill="url(#centerGoldGrad)" stroke="#FFF7D6" strokeWidth="0.8" />
+            <circle cx="0" cy="0" r="2.2" fill="#5C4511" />
           </g>
 
-          {/* Organic Gilded Seed at ground */}
+          {/* Minimalist Ground Seed */}
           <circle
             ref={seedRef}
             cx="100"
-            cy="185"
-            r="6"
-            fill="url(#goldJeweledDome)"
+            cy="175"
+            r="4"
+            fill="url(#centerGoldGrad)"
             stroke="#D4AF37"
-            strokeWidth="1.5"
+            strokeWidth="1"
           />
         </svg>
       </div>
