@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect, useCallback } from "react";
+import React from "react";
+import { useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ArrowLeft, X, MessageCircle, Sparkles } from "lucide-react";
 import { ServiceCollageConfig, getServiceWhatsAppLink } from "@/data/servicesCollageData";
+import { SHOP_CONFIG } from "@/config/shop";
 
 /* Paperclip SVG Component */
 function PaperclipSvg({ className = "w-5 h-10" }: { className?: string }) {
@@ -524,29 +526,15 @@ export default function ServiceCollageModal({ config, onClose, asPage = false }:
         </button>
 
         <div className="flex items-center gap-2">
-          {majorItem && (
-            <a
-              href={getServiceWhatsAppLink(config.title, "CUSTOM", `${config.title} Custom Order`, majorItem.src)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 hover:border-white bg-transparent hover:bg-white/10 text-white text-xs font-medium uppercase tracking-wider transition-colors"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
-              <span>Custom Orders Welcomed</span>
-            </a>
-          )}
-
-          {majorItem && (
-            <a
-              href={getServiceWhatsAppLink(config.title, "GENERAL", `${config.title} Inquiry`, majorItem.src)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-medium uppercase tracking-wider shadow-md transition-colors"
-            >
-              <MessageCircle className="w-3.5 h-3.5 fill-current" />
-              <span>WhatsApp Inquiry</span>
-            </a>
-          )}
+          <a
+            href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-medium uppercase tracking-wider shadow-md transition-colors"
+          >
+            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+            <span>WhatsApp Inquiry</span>
+          </a>
         </div>
       </footer>
 

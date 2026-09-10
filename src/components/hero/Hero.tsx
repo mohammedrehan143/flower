@@ -268,8 +268,8 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Value Props Row (3 Icons matching hero.png) */}
-            <div className="flex items-center gap-6 sm:gap-10 pt-4 sm:pt-6 text-[#0D1E17]">
+            {/* Value Props Row */}
+            <div className="flex items-center gap-8 sm:gap-12 pt-4 sm:pt-6 text-[#0D1E17]">
               {/* Fresh Daily */}
               <div className="flex flex-col items-center gap-1.5">
                 <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0D1E17]">
@@ -280,21 +280,6 @@ export default function Hero() {
                 </div>
                 <span className="text-[11px] sm:text-xs font-sans font-medium text-[#0D1E17] text-center leading-tight">
                   Fresh<br />Daily
-                </span>
-              </div>
-
-              {/* Same Day Delivery */}
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0D1E17]">
-                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="2" y="5" width="13" height="11" rx="1" />
-                    <path d="M15 8h4l3 4v4h-7V8z" />
-                    <circle cx="6" cy="18" r="2" />
-                    <circle cx="18" cy="18" r="2" />
-                  </svg>
-                </div>
-                <span className="text-[11px] sm:text-xs font-sans font-medium text-[#0D1E17] text-center leading-tight">
-                  Same Day<br />Delivery
                 </span>
               </div>
 

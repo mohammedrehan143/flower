@@ -9,17 +9,7 @@ import {
   MessageCircle,
   Calendar,
 } from "lucide-react";
-import { SHOP_CONFIG, getGoogleMapsUrl, getFullImageUrl } from "@/config/shop";
-
-const DISCIPLINE_IMAGES: Record<string, string> = {
-  "Luxury Car Decor": "/images/f19.avif",
-  "Artisanal Chocolate Bouquets": "/images/f22.avif",
-  "Estate & Home Botanical Decor": "/images/f4.avif",
-  "Haute Couture Bouquets": "/images/f1.avif",
-  "Wedding & Stage Scenography": "/images/f19.avif",
-  "Festive & Celebration Decor": "/images/f20.avif",
-  "Corporate & Fashion Runway Styling": "/images/f20.avif",
-};
+import { SHOP_CONFIG, getGoogleMapsUrl } from "@/config/shop";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -38,9 +28,6 @@ export default function ContactSection() {
   };
 
   const generateWhatsAppInquiry = () => {
-    const refImage = DISCIPLINE_IMAGES[formData.discipline] || "/images/f1.avif";
-    const fullImgUrl = getFullImageUrl(refImage);
-
     const text = [
       `*New Design Commission Inquiry — ${SHOP_CONFIG.name}*`,
       ``,
@@ -51,8 +38,6 @@ export default function ContactSection() {
       `*Venue / City:* ${formData.location || "Bengaluru"}`,
       `*Design Brief:*`,
       `"${formData.vision || "I would like to inquire about bespoke floral design."}"`,
-      ``,
-      `📸 *Reference Design Photo:* ${fullImgUrl}`,
       ``,
       `Kindly advise on consultation availability. Thank you!`,
     ].join("\n");
@@ -266,9 +251,6 @@ export default function ContactSection() {
                     <option value="Festive & Celebration Decor">Festive &amp; Celebration Decor</option>
                     <option value="Corporate & Fashion Runway Styling">Runway &amp; Brand Styling</option>
                   </select>
-                  <span className="text-[10px] text-[#8E785C] block mt-1 font-mono">
-                    📸 Reference portfolio image will be automatically attached to your WhatsApp message
-                  </span>
                 </div>
 
                 <div>

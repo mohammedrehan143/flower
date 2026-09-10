@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import {
   SHOP_CONFIG,
-  getWhatsAppInquiryLink,
   getPhoneCallLink,
   getEmailLink,
 } from "@/config/shop";
@@ -23,9 +22,7 @@ import RealtimeStatusBadge from "./RealtimeStatusBadge";
 export default function Footer() {
   const [copied, setCopied] = useState(false);
 
-  const whatsappUrl = getWhatsAppInquiryLink(
-    "Hello SMG FLOWER, I would like to inquire about your floral collections, custom orders, or consultation."
-  );
+  const whatsappUrl = `https://wa.me/${SHOP_CONFIG.contact.whatsapp}`;
   const phoneLink = getPhoneCallLink();
   const emailLink = getEmailLink("Floral Portfolio Inquiry");
 

@@ -128,7 +128,7 @@ export const SHOP_CONFIG: ShopConfig = {
     phoneDisplay: "+91 74838 16596",
     whatsapp: "917483816596",
     whatsappDisplay: "+91 74838 16596",
-    email: "atelier@smgflower.com",
+    email: "gourabsarkar7483816596@gmail.com",
   },
   hours: {
     weekday: "Monday – Friday: 8:00 AM – 9:00 PM",
@@ -195,12 +195,15 @@ export const getWhatsAppInquiryLink = (
   imagePath?: string,
   itemTitle?: string
 ) => {
+  if (!topicOrMessage && !imagePath && !itemTitle) {
+    return `https://wa.me/${SHOP_CONFIG.contact.whatsapp}`;
+  }
+
   const parts: string[] = [];
 
-  const baseText =
-    topicOrMessage ||
-    `Hello ${SHOP_CONFIG.name}, I was viewing your portfolio and would like to inquire about a custom floral design commission.`;
-  parts.push(baseText);
+  if (topicOrMessage) {
+    parts.push(topicOrMessage);
+  }
 
   if (itemTitle) {
     parts.push(`💐 Design / Service: *${itemTitle}*`);

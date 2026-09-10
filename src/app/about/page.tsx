@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import {
   SHOP_CONFIG,
-  getWhatsAppInquiryLink,
   getPhoneCallLink,
 } from "@/config/shop";
 import Footer from "@/components/footer/Footer";
@@ -77,7 +76,7 @@ export default function AboutPage() {
 
           {/* Quick Consultation CTA */}
           <a
-            href={getWhatsAppInquiryLink("Hello SMG FLOWER, I am reading your story and would like to consult about an order.")}
+            href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-medium uppercase tracking-wider transition-all shadow-md active:scale-95"
@@ -145,11 +144,7 @@ export default function AboutPage() {
                 {/* Primary Action Buttons */}
                 <div className="pt-2 flex flex-wrap items-center gap-4">
                   <a
-                    href={getWhatsAppInquiryLink(
-                      "Hello SMG FLOWER, I would like to inquire about a custom floral order.",
-                      "/images/f1.avif",
-                      "Signature Botanical Selection"
-                    )}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#0D1E17] hover:bg-[#1f3a2f] text-white text-xs uppercase tracking-[0.2em] font-medium transition-all shadow-md active:scale-95"
@@ -348,7 +343,7 @@ export default function AboutPage() {
 
               <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
                 <a
-                  href={getWhatsAppInquiryLink("Hello SMG FLOWER, I would like to visit or place an order.")}
+                  href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-medium uppercase tracking-wider transition-all shadow-sm"

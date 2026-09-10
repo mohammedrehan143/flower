@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Sparkles, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getWhatsAppInquiryLink } from "@/config/shop";
+import { SHOP_CONFIG } from "@/config/shop";
 import ServiceCollageModal from "./ServiceCollageModal";
 import { SERVICES_COLLAGE_DATA } from "@/data/servicesCollageData";
 
@@ -427,7 +427,7 @@ export default function ServicesSection() {
           </div>
 
           <a
-            href={getWhatsAppInquiryLink("Hello SMG FLOWER, I would like to enquire about placing a custom floral or confectionery order.")}
+            href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0D1E17] hover:bg-[#25D366] text-white text-[11px] font-medium tracking-wider uppercase transition-colors shrink-0 shadow-xs cursor-pointer active:scale-95"
@@ -480,7 +480,7 @@ export default function ServicesSection() {
                 </button>
 
                 <a
-                  href={getWhatsAppInquiryLink("Hello SMG FLOWER, I would like to explore your services and custom commissions.")}
+                  href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#0D1E17]/30 bg-transparent hover:bg-white text-[#0D1E17] text-xs font-medium tracking-[0.18em] uppercase transition-all shadow-xs"
@@ -549,7 +549,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[0].whatsappMessage, SERVICES[0].image, SERVICES[0].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -629,7 +629,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[1].whatsappMessage, SERVICES[1].image, SERVICES[1].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -712,7 +712,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[2].whatsappMessage, SERVICES[2].image, SERVICES[2].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -780,7 +780,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[3].whatsappMessage, SERVICES[3].image, SERVICES[3].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -868,7 +868,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[4].whatsappMessage, SERVICES[4].image, SERVICES[4].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -934,7 +934,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[5].whatsappMessage, SERVICES[5].image, SERVICES[5].title)}
+                    href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -1091,7 +1091,7 @@ export default function ServicesSection() {
 
                       {/* Dark Green Pill Enquire Button */}
                       <a
-                        href={getWhatsAppInquiryLink(service.whatsappMessage, service.image, service.title)}
+                        href={`https://wa.me/${SHOP_CONFIG.contact.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-between w-full py-1.5 px-2.5 sm:py-2 sm:px-3 rounded-full bg-[#0D1E17] hover:bg-[#1A382B] text-[#FAF7F2] text-[9.5px] sm:text-[10.5px] font-medium tracking-[0.14em] uppercase transition-colors shadow-xs group"
