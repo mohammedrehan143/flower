@@ -1,7 +1,17 @@
-import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Sparkles, MessageCircle } from "lucide-react";
-import { getWhatsAppInquiryLink } from "@/config/shop";
+import { ArrowLeft, Sparkles, MessageCircle, Flower2 } from "lucide-react";
+import { getWhatsAppInquiryLink, SHOP_CONFIG } from "@/config/shop";
+
+export const metadata: Metadata = {
+  title: `Page Not Found | ${SHOP_CONFIG.name}`,
+  description:
+    "The requested floral page could not be found. Explore our fresh bouquets and floral services at SMG FLOWER.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function NotFound() {
   return (
@@ -34,14 +44,22 @@ export default function NotFound() {
             Return to Portfolio
           </Link>
 
+          <Link
+            href="/bouquets"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-[#C5A880] text-[#0D1E17] hover:bg-[#F5EFEB] text-xs uppercase tracking-[0.2em] font-medium transition-all"
+          >
+            <Flower2 className="w-4 h-4 text-[#B86874]" />
+            View Bouquets
+          </Link>
+
           <a
             href={getWhatsAppInquiryLink("Hello SMG FLOWER, I was browsing your portfolio and would like assistance.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-[#C5A880] text-[#0D1E17] hover:bg-[#F5EFEB] text-xs uppercase tracking-[0.2em] font-medium transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-emerald-500/40 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-xs uppercase tracking-[0.2em] font-medium transition-all"
           >
             <MessageCircle className="w-4 h-4 text-emerald-600" />
-            Consult Our Florist
+            WhatsApp Florist
           </a>
         </div>
       </div>

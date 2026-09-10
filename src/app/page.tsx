@@ -13,14 +13,12 @@ import TestimonialsSection from "@/components/testimonials/TestimonialsSection";
 import FAQSection from "@/components/faq/FAQSection";
 import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/footer/Footer";
-import QuickViewModal from "@/components/quickview/QuickViewModal";
 import FloatingWhatsApp from "@/components/sticky/FloatingWhatsApp";
 import JsonLd from "@/components/seo/JsonLd";
-import { CartProvider } from "@/context/CartContext";
 
 export default function Home() {
   return (
-    <CartProvider>
+    <>
       {/* Schema.org Structured Data */}
       <JsonLd />
 
@@ -63,11 +61,8 @@ export default function Home() {
       {/* Botanical Footer */}
       <Footer />
 
-      {/* Quick View Portfolio Creation Inspector Modal */}
-      <QuickViewModal />
-
       {/* Floating WhatsApp Master Florist Consultation Widget */}
       <FloatingWhatsApp />
-    </CartProvider>
+    </>
   );
 }

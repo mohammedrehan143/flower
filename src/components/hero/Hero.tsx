@@ -102,12 +102,23 @@ export default function Hero() {
     };
   }, [showScrollPrompt]);
 
+  // Smoothly scroll directly to the services section on the home page
+  const scrollToServices = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    const servicesEl = document.getElementById("services");
+    if (servicesEl) {
+      servicesEl.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.hash = "services";
+    }
+  };
+
   // Handle clicking "Explore Collections"
   const handleExploreClick = (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     setShowScrollPrompt(true);
 
-    const target = document.getElementById("editorial-scroll") || document.getElementById("services");
+    const target = document.getElementById("services") || document.getElementById("editorial-scroll");
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -195,7 +206,7 @@ export default function Hero() {
               {SHOP_CONFIG.name}
             </span>
             <span className="text-[7.5px] sm:text-[8.5px] tracking-[0.24em] uppercase text-[#0D1E17]/80 font-sans font-medium mt-1">
-              Flowers Make Life Brighter
+              Premium florist in  bangalore
             </span>
           </div>
         </a>
@@ -214,6 +225,7 @@ export default function Hero() {
 
             {/* Headline with elegant calligraphy styling */}
             <h1 className="font-calligraphy text-5xl sm:text-7xl md:text-8xl lg:text-[5.4rem] font-normal text-[#0D1E17] leading-[1.12] tracking-normal drop-shadow-xs">
+              <span className="sr-only">SMG FLOWER — Luxury Florist, Fresh Blooms &amp; Handcrafted Bouquets. </span>
               Flowers <br />
               For A <br />
               <span className="text-[#B86874]">Brighter</span> <br />
@@ -242,8 +254,8 @@ export default function Hero() {
 
             {/* Explore Collections CTA Button */}
             <div className="pt-2 sm:pt-4">
-              <button
-                type="button"
+              <a
+                href="#services"
                 onClick={handleExploreClick}
                 className="inline-flex items-center gap-3.5 pl-6 pr-2.5 py-2.5 sm:pl-8 sm:pr-3 sm:py-3 rounded-full bg-[#B86874] hover:bg-[#A55663] text-white shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer focus:outline-none"
               >
@@ -253,7 +265,7 @@ export default function Hero() {
                 <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#B86874] flex items-center justify-center group-hover:translate-x-1 transition-transform shadow-xs">
                   <ArrowRight className="w-4 h-4" />
                 </span>
-              </button>
+              </a>
             </div>
 
             {/* Value Props Row (3 Icons matching hero.png) */}
@@ -333,16 +345,16 @@ export default function Hero() {
               </button>
             ))}
 
-            {/* Arrow Next Button -> Opens All Services */}
-            <button
-              type="button"
-              onClick={(e) => handleCategoryClick(e, "hand-bouquets", "All")}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-xs flex items-center justify-center text-[#0D1E17] hover:bg-[#B86874] hover:text-white transition-all shrink-0 ml-1 border border-white/60 cursor-pointer"
-              aria-label="Explore all services"
-              title="Open Our Services"
+            {/* Arrow Next Button -> Takes user directly to services section */}
+            <a
+              href="#services"
+              onClick={scrollToServices}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-xs flex items-center justify-center text-[#0D1E17] hover:bg-[#B86874] hover:text-white transition-all shrink-0 ml-1 border border-white/60 cursor-pointer group"
+              aria-label="Go to services section"
+              title="Explore Our Services Section"
             >
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>
@@ -404,7 +416,7 @@ export default function Hero() {
                   <span className="text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.25em] uppercase text-[#C5A880]">
                     EXPLORE COLLECTIONS
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-ping" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
                 </div>
                 <p className="font-serif text-base sm:text-lg font-medium text-white leading-tight mt-0.5">
                   Scroll Down To View

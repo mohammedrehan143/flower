@@ -24,8 +24,8 @@ const NAV_LINKS = [
     ),
   },
   {
-    label: "Atelier Story",
-    href: "#about",
+    label: "About Us",
+    href: "/about",
     symbol: (
       <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B86874]" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />

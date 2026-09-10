@@ -1,45 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
-import { MessageCircle, X } from "lucide-react";
+import React from "react";
 import { getWhatsAppInquiryLink } from "@/config/shop";
 
-export default function FloatingWhatsApp() {
-  const [showTooltip, setShowTooltip] = useState(true);
+function WhatsAppIcon({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.42 1.44.54.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z" />
+    </svg>
+  );
+}
 
+export default function FloatingWhatsApp() {
   return (
     <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end pointer-events-auto">
-      {/* Subtle floating badge tooltip */}
-      {showTooltip && (
-        <div className="hidden sm:flex items-center gap-2 mb-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#C5A880]/40 shadow-lg text-xs text-[#0D1E17] animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-serif">Master Florist Available</span>
-          <button
-            onClick={() => setShowTooltip(false)}
-            className="text-[#8F9E8B] hover:text-[#0D1E17] ml-1"
-            aria-label="Dismiss message"
-          >
-            <X className="w-3 h-3" />
-          </button>
-        </div>
-      )}
-
-      {/* Main WhatsApp Consultation Button */}
+      {/* WhatsApp Button in Atelier Dark Green & Gold Color Theme */}
       <a
         href={getWhatsAppInquiryLink()}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-2.5 px-4 py-3.5 sm:p-4 rounded-full bg-[#0D1E17] text-[#FAF7F2] hover:bg-[#163025] shadow-2xl border-2 border-[#C5A880]/50 transition-all duration-300 hover:scale-105 active:scale-95"
-        aria-label="Consult directly with our master florist on WhatsApp"
+        className="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0D1E17] text-[#C5A880] hover:text-[#FAF7F2] hover:bg-[#163025] border-2 border-[#C5A880]/60 hover:border-[#C5A880] shadow-[0_10px_25px_rgba(13,30,23,0.4)] transition-all duration-300 hover:scale-108 active:scale-95"
+        aria-label="Contact SMG FLOWER on WhatsApp"
+        title="Chat with SMG FLOWER on WhatsApp"
       >
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
-        </span>
-        <MessageCircle className="w-5 h-5 text-[#C5A880] group-hover:rotate-12 transition-transform" />
-        <span className="text-xs uppercase tracking-[0.2em] font-medium sm:hidden font-sans">
-          Consult Florist
-        </span>
+        <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-110" />
       </a>
     </div>
   );

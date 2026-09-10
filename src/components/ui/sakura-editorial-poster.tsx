@@ -212,7 +212,7 @@ function SakuraFitTitle({
       >
         {title}
       </span>
-      <h1
+      <h3
         className="m-0 overflow-visible whitespace-nowrap text-left uppercase leading-none text-white"
         style={{
           ...titleStyle,
@@ -241,7 +241,7 @@ function SakuraFitTitle({
           );
         })}
         <span className="sr-only">{title}</span>
-      </h1>
+      </h3>
     </div>
   );
 }
@@ -338,7 +338,7 @@ function SakuraEditorialCopy({
         ))}
       </div>
 
-      <h2
+      <h4
         className="relative z-10 mt-[clamp(0.7rem,2.2cqw,1.15rem)] text-[clamp(1.2rem,3.6cqw,1.7rem)] font-semibold leading-[1.3] text-[#f6eee8]"
         style={{
           fontFamily:
@@ -346,7 +346,7 @@ function SakuraEditorialCopy({
         }}
       >
         {headline}
-      </h2>
+      </h4>
 
       <p className="relative z-10 mt-[clamp(0.5rem,1.6cqw,0.75rem)] max-w-[62%] text-[clamp(10px,1.7cqw,12px)] font-light leading-[1.55] text-[#f6eee8]/85">
         {body}

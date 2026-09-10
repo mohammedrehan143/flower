@@ -12,6 +12,16 @@ export interface OperatingSchedule {
   rules: Record<number, DayScheduleRule>;
 }
 
+export interface ShopBranch {
+  id: string;
+  name: string;
+  subtitle: string;
+  area: string;
+  address: string;
+  mapsUrl: string;
+  highlight: string;
+}
+
 export interface ShopAddress {
   street: string;
   city: string;
@@ -34,6 +44,7 @@ export interface ShopContact {
 
 export interface ShopHours {
   weekday: string;
+  weekend?: string;
   saturday: string;
   sunday: string;
   consultations: string;
@@ -57,6 +68,7 @@ export interface ShopConfig {
   subTagline: string;
   description: string;
   address: ShopAddress;
+  branches: ShopBranch[];
   contact: ShopContact;
   hours: ShopHours;
   operatingSchedule?: OperatingSchedule;
@@ -72,40 +84,70 @@ export const SHOP_CONFIG: ShopConfig = {
   description:
     "A premier floral portfolio showcase specializing in bespoke wedding car decor, estate home botanicals, hand-tied couture bouquets, gourmet chocolate floral arrangements, and architectural event installations.",
   address: {
-    street: "48 Rue des Fleuristes, Suite 12",
-    city: "Paris",
-    state: "Île-de-France",
-    postalCode: "75001",
-    country: "France",
-    formatted: "48 Rue des Fleuristes, 75001 Paris / Atelier 12, West Garden Arcade",
-    mapsUrl: "https://maps.google.com/?q=48+Rue+des+Fleuristes+75001+Paris+France",
-    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=48+Rue+des+Fleuristes+75001+Paris+France",
-    landmark: "West Garden Arcade entrance, opposite Grand Fontaine",
+    street: "Dinnur Main Road, Sultan Palya, RT Nagar",
+    city: "Bengaluru",
+    state: "Karnataka",
+    postalCode: "560032",
+    country: "India",
+    formatted: "Dinnur Main Road, Sultan Palya, RT Nagar, Bengaluru, Karnataka 560032",
+    mapsUrl: "https://share.google/FSA6HjdEvKtW9uXYH",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=SMG+Flower+Bengaluru",
+    landmark: "Dinnur Main Road, Sultan Palya, RT Nagar",
   },
+  branches: [
+    {
+      id: "smg-flower-main",
+      name: "SMG Flower",
+      subtitle: "Main Floral Atelier",
+      area: "RT Nagar, Bengaluru",
+      address: "RT Nagar, Bengaluru, Karnataka, India",
+      mapsUrl: "https://share.google/FSA6HjdEvKtW9uXYH",
+      highlight: "Wedding car decor, grand bridal installations & bespoke portfolio consultations",
+    },
+    {
+      id: "smg-flower-stall",
+      name: "SMG Flower Stall",
+      subtitle: "Sultan Palya Branch",
+      area: "RT Nagar / Sultan Palya, Bengaluru",
+      address: "RT Nagar / Sultan Palya, Bengaluru, Karnataka, India",
+      mapsUrl: "https://share.google/VxMSDlhHasYjXMbA5",
+      highlight: "Daily dawn-fresh stems, celebratory hand bouquets & floral garlands",
+    },
+    {
+      id: "smg-flower-dinnur",
+      name: "SMG Flower Stall (Dinnur)",
+      subtitle: "Dinnur Main Road Branch",
+      area: "Dinnur Main Road, Sultan Palya, Bengaluru",
+      address: "Dinnur Main Road, Sultan Palya, RT Nagar, Bengaluru, Karnataka 560032",
+      mapsUrl: "https://share.google/tpUGHnyLAJuaRH0MS",
+      highlight: "Hand-tied bouquets, confectionery chocolate arrangements & express orders",
+    },
+  ],
   contact: {
-    phone: "+15552345678",
-    phoneDisplay: "+1 (555) 234-5678",
-    whatsapp: "15552345678",
-    whatsappDisplay: "+1 (555) 234-5678",
+    phone: "+917483816596",
+    phoneDisplay: "+91 74838 16596",
+    whatsapp: "917483816596",
+    whatsappDisplay: "+91 74838 16596",
     email: "atelier@smgflower.com",
   },
   hours: {
-    weekday: "Monday – Friday: 8:00 AM – 8:00 PM",
-    saturday: "Saturday: 8:30 AM – 7:30 PM",
-    sunday: "Sunday: 9:00 AM – 5:00 PM",
+    weekday: "Monday – Friday: 8:00 AM – 9:00 PM",
+    weekend: "Saturday – Sunday: 7:00 AM – 9:30 PM",
+    saturday: "Saturday: 7:00 AM – 9:30 PM",
+    sunday: "Sunday: 7:00 AM – 9:30 PM",
     consultations: "Private Consultation By Reservation",
   },
   operatingSchedule: {
     timezone: "Asia/Kolkata",
     timezoneLabel: "IST",
     rules: {
-      0: { isOpen: true, openMinutes: 9 * 60, closeMinutes: 17 * 60, openLabel: "9:00 AM", closeLabel: "5:00 PM" }, // Sunday
-      1: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" }, // Monday
-      2: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" }, // Tuesday
-      3: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" }, // Wednesday
-      4: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" }, // Thursday
-      5: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" }, // Friday
-      6: { isOpen: true, openMinutes: 8.5 * 60, closeMinutes: 19.5 * 60, openLabel: "8:30 AM", closeLabel: "7:30 PM" }, // Saturday
+      0: { isOpen: true, openMinutes: 7 * 60, closeMinutes: 21 * 60 + 30, openLabel: "7:00 AM", closeLabel: "9:30 PM" }, // Sunday
+      1: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" }, // Monday
+      2: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" }, // Tuesday
+      3: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" }, // Wednesday
+      4: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" }, // Thursday
+      5: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" }, // Friday
+      6: { isOpen: true, openMinutes: 7 * 60, closeMinutes: 21 * 60 + 30, openLabel: "7:00 AM", closeLabel: "9:30 PM" }, // Saturday
     },
   },
   social: {
@@ -119,12 +161,60 @@ export const SHOP_CONFIG: ShopConfig = {
   },
 };
 
-export const getWhatsAppInquiryLink = (topic?: string) => {
-  const defaultMsg = encodeURIComponent(
-    topic ||
-      `Hello ${SHOP_CONFIG.name}, I was viewing your portfolio and would like to inquire about a custom floral design commission.`
-  );
-  return `https://wa.me/${SHOP_CONFIG.contact.whatsapp}?text=${defaultMsg}`;
+/**
+ * Resolves a full, public HTTP/HTTPS URL for any image in the project so that
+ * WhatsApp click-to-chat can embed, preview, and link images directly.
+ */
+export const getFullImageUrl = (imagePath?: string): string => {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
+    return imagePath;
+  }
+
+  const cleanPath = imagePath.startsWith("/") ? imagePath : `/${imagePath}`;
+
+  // If in browser and on a real live domain (not localhost)
+  if (typeof window !== "undefined" && window.location.origin) {
+    const origin = window.location.origin;
+    if (!origin.includes("localhost") && !origin.includes("127.0.0.1")) {
+      return `${origin}${cleanPath}`;
+    }
+  }
+
+  // If siteUrl is defined and not localhost
+  if (SHOP_CONFIG.meta.siteUrl && !SHOP_CONFIG.meta.siteUrl.includes("localhost")) {
+    return `${SHOP_CONFIG.meta.siteUrl}${cleanPath}`;
+  }
+
+  // Globally accessible GitHub raw CDN fallback
+  return `https://raw.githubusercontent.com/mohammedrehan143/flower/main/public${cleanPath}`;
+};
+
+export const getWhatsAppInquiryLink = (
+  topicOrMessage?: string,
+  imagePath?: string,
+  itemTitle?: string
+) => {
+  const parts: string[] = [];
+
+  const baseText =
+    topicOrMessage ||
+    `Hello ${SHOP_CONFIG.name}, I was viewing your portfolio and would like to inquire about a custom floral design commission.`;
+  parts.push(baseText);
+
+  if (itemTitle) {
+    parts.push(`💐 Design / Service: *${itemTitle}*`);
+  }
+
+  if (imagePath) {
+    const fullUrl = getFullImageUrl(imagePath);
+    if (fullUrl) {
+      parts.push(`📸 Reference Image: ${fullUrl}`);
+    }
+  }
+
+  const message = parts.join("\n\n");
+  return `https://wa.me/${SHOP_CONFIG.contact.whatsapp}?text=${encodeURIComponent(message)}`;
 };
 
 export const getGoogleMapsUrl = (customQuery?: string) => {

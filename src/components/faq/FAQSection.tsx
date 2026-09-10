@@ -44,23 +44,25 @@ export default function FAQSection() {
                 key={index}
                 className="bg-white rounded-2xl border border-[#EAE1D9] shadow-sm overflow-hidden transition-all duration-300 hover:border-[#C5A880]/40"
               >
-                <button
-                  type="button"
-                  onClick={() => toggleAccordion(index)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880]"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-serif text-lg sm:text-xl font-normal text-[#0D1E17]">
-                    {item.question}
-                  </span>
-                  <div
-                    className={`p-2 rounded-full bg-[#FAF7F2] text-[#7E927F] transition-transform duration-300 ${
-                      isOpen ? "rotate-180 bg-[#EBD7CD]/50 text-[#0D1E17]" : ""
-                    }`}
+                <h3 className="m-0">
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion(index)}
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880]"
+                    aria-expanded={isOpen}
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+                    <span className="font-serif text-lg sm:text-xl font-normal text-[#0D1E17]">
+                      {item.question}
+                    </span>
+                    <div
+                      className={`p-2 rounded-full bg-[#FAF7F2] text-[#7E927F] transition-transform duration-300 ${
+                        isOpen ? "rotate-180 bg-[#EBD7CD]/50 text-[#0D1E17]" : ""
+                      }`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </button>
+                </h3>
 
                 {isOpen && (
                   <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-[#5E7560] leading-relaxed font-sans border-t border-[#F5EFEB]">
@@ -77,9 +79,9 @@ export default function FAQSection() {
           <div className="flex items-center gap-3.5 text-left">
             <HelpCircle className="w-6 h-6 text-[#C5A880] shrink-0" />
             <div>
-              <p className="font-cinzel text-base text-[#0D1E17]">
+              <h3 className="font-cinzel text-base text-[#0D1E17]">
                 Have a unique design vision or private commission?
-              </p>
+              </h3>
               <p className="text-xs text-[#7E927F] font-sans">
                 Our head botanist and scenography director is available for direct consultation.
               </p>

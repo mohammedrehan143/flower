@@ -67,9 +67,10 @@ function ScrapbookStamp({ category = "ATELIER" }: { category?: string }) {
 interface ServiceCollageModalProps {
   config: ServiceCollageConfig;
   onClose: () => void;
+  asPage?: boolean;
 }
 
-export default function ServiceCollageModal({ config, onClose }: ServiceCollageModalProps) {
+export default function ServiceCollageModal({ config, onClose, asPage = false }: ServiceCollageModalProps) {
   // Keyboard navigation: Escape key closes modal
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -112,12 +113,21 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
 
         {/* Center Title */}
         <div className="text-center px-2">
-          <h2 className="font-serif text-lg sm:text-2xl text-white font-normal tracking-tight leading-tight">
-            {config.title}
-            <span className="font-calligraphy text-xl sm:text-2xl text-[#EAD8CE] ml-2">
-              Scrapbook
-            </span>
-          </h2>
+          {asPage ? (
+            <h1 className="font-serif text-lg sm:text-2xl text-white font-normal tracking-tight leading-tight">
+              {config.title}
+              <span className="font-calligraphy text-xl sm:text-2xl text-[#EAD8CE] ml-2">
+                Scrapbook
+              </span>
+            </h1>
+          ) : (
+            <h2 className="font-serif text-lg sm:text-2xl text-white font-normal tracking-tight leading-tight">
+              {config.title}
+              <span className="font-calligraphy text-xl sm:text-2xl text-[#EAD8CE] ml-2">
+                Scrapbook
+              </span>
+            </h2>
+          )}
           <span className="text-[10px] sm:text-xs font-mono tracking-wider text-emerald-400 block uppercase mt-0.5">
             Tap Any Polaroid to Send Direct WhatsApp Enquiry
           </span>
@@ -153,7 +163,7 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
           {/* Top Scrapbook Header Bar */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-[#E8DEC8]">
             <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[#C5A880]" />
               <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#0D1E17] font-semibold">
                 {config.category.toUpperCase()} SCRAPBOOK • CLICK ANY IMAGE TO ENQUIRE ON WHATSAPP
               </span>

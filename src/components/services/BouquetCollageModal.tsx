@@ -18,13 +18,15 @@ export const getBouquetWhatsAppLink = (code: string, title: string, imgSrc: stri
 
 interface BouquetCollageModalProps {
   onClose: () => void;
+  asPage?: boolean;
 }
 
-export default function BouquetCollageModal({ onClose }: BouquetCollageModalProps) {
+export default function BouquetCollageModal({ onClose, asPage = false }: BouquetCollageModalProps) {
   return (
     <ServiceCollageModal
       config={SERVICES_COLLAGE_DATA["hand-bouquets"]}
       onClose={onClose}
+      asPage={asPage}
     />
   );
 }

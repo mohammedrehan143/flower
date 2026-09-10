@@ -9,12 +9,12 @@ export default function JsonLd() {
     name: SHOP_CONFIG.name,
     legalName: SHOP_CONFIG.name,
     url: SHOP_CONFIG.meta.siteUrl,
-    logo: `${SHOP_CONFIG.meta.siteUrl}/images/logo.png`,
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85",
+    logo: `${SHOP_CONFIG.meta.siteUrl}/favicon.avif`,
+    image: `${SHOP_CONFIG.meta.siteUrl}/images/f1.avif`,
     description: SHOP_CONFIG.description,
     telephone: SHOP_CONFIG.contact.phone,
     email: SHOP_CONFIG.contact.email,
-    priceRange: "$$$$",
+    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: SHOP_CONFIG.address.street,
@@ -23,6 +23,20 @@ export default function JsonLd() {
       postalCode: SHOP_CONFIG.address.postalCode,
       addressCountry: SHOP_CONFIG.address.country,
     },
+    hasMap: SHOP_CONFIG.address.mapsUrl,
+    department: SHOP_CONFIG.branches.map((b) => ({
+      "@type": "Florist",
+      name: b.name,
+      hasMap: b.mapsUrl,
+      telephone: SHOP_CONFIG.contact.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: b.address,
+        addressLocality: "Bengaluru",
+        addressRegion: "Karnataka",
+        addressCountry: "IN",
+      },
+    })),
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -34,19 +48,13 @@ export default function JsonLd() {
           "Friday",
         ],
         opens: "08:00",
-        closes: "20:00",
+        closes: "21:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday"],
-        opens: "08:30",
-        closes: "19:30",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Sunday"],
-        opens: "09:00",
-        closes: "17:00",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "07:00",
+        closes: "21:30",
       },
     ],
     sameAs: [
@@ -54,6 +62,112 @@ export default function JsonLd() {
       SHOP_CONFIG.social.pinterest,
       SHOP_CONFIG.social.facebook,
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "3",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Jayanta Sarkar",
+        },
+        datePublished: "2025-03-01",
+        reviewBody: "Good Quality OF Flower All time Available here",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+      },
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Monisha Sarkar",
+        },
+        datePublished: "2025-02-15",
+        reviewBody: "Very very good take reviews from here",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+      },
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Verified Patron",
+        },
+        datePublished: "2025-07-10",
+        reviewBody: "They have all kinds of designed bouquets they have varieties of flowers 💐.",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+      },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Floral Design & Scenography Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Wedding Car Floral Scenography",
+            description:
+              "Artisan vehicle floral installations, cascading bonnet trails, and luxury procession draping.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Bespoke Hand-Tied Bouquets",
+            description:
+              "Curated seasonal cut stems, premium imported Dutch roses, and botanical ribbons.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Confectionery & Chocolate Floral Bouquets",
+            description:
+              "Artisanal fusion of gourmet chocolates and fresh stems in sculptural arrangements.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Grand Floral Heart Sculptures",
+            description:
+              "Architectural scarlet and ruby rose heart arrangements for proposals and anniversaries.",
+          },
+        },
+      ],
+    },
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SHOP_CONFIG.name,
+    url: SHOP_CONFIG.meta.siteUrl,
+    description: SHOP_CONFIG.description,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SHOP_CONFIG.meta.siteUrl}/bouquets?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
   };
 
   const faqSchema = {
@@ -86,6 +200,10 @@ export default function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(floristSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <script
         type="application/ld+json"

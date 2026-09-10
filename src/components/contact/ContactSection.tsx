@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Sparkles,
   MapPin,
@@ -8,7 +9,17 @@ import {
   MessageCircle,
   Calendar,
 } from "lucide-react";
-import { SHOP_CONFIG, getGoogleMapsUrl } from "@/config/shop";
+import { SHOP_CONFIG, getGoogleMapsUrl, getFullImageUrl } from "@/config/shop";
+
+const DISCIPLINE_IMAGES: Record<string, string> = {
+  "Luxury Car Decor": "/images/f19.avif",
+  "Artisanal Chocolate Bouquets": "/images/f22.avif",
+  "Estate & Home Botanical Decor": "/images/f4.avif",
+  "Haute Couture Bouquets": "/images/f1.avif",
+  "Wedding & Stage Scenography": "/images/f19.avif",
+  "Festive & Celebration Decor": "/images/f20.avif",
+  "Corporate & Fashion Runway Styling": "/images/f20.avif",
+};
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -27,15 +38,24 @@ export default function ContactSection() {
   };
 
   const generateWhatsAppInquiry = () => {
-    const text = `*New Design Commission Inquiry — ${SHOP_CONFIG.name}*\n
-*Client Name:* ${formData.name || "A Guest"}
-*Phone / WhatsApp:* ${formData.phone || "Not provided"}
-*Discipline:* ${formData.discipline}
-*Target Date:* ${formData.eventDate || "Flexible"}
-*Venue / City:* ${formData.location || "To be discussed"}
-*Design Brief:*
-"${formData.vision || "I would like to inquire about bespoke floral design."}"\n
-Kindly advise on consultation availability.`;
+    const refImage = DISCIPLINE_IMAGES[formData.discipline] || "/images/f1.avif";
+    const fullImgUrl = getFullImageUrl(refImage);
+
+    const text = [
+      `*New Design Commission Inquiry — ${SHOP_CONFIG.name}*`,
+      ``,
+      `*Client Name:* ${formData.name || "A Guest"}`,
+      `*Phone / WhatsApp:* ${formData.phone || "Not provided"}`,
+      `*Discipline:* ${formData.discipline}`,
+      `*Target Date:* ${formData.eventDate || "Flexible"}`,
+      `*Venue / City:* ${formData.location || "Bengaluru"}`,
+      `*Design Brief:*`,
+      `"${formData.vision || "I would like to inquire about bespoke floral design."}"`,
+      ``,
+      `📸 *Reference Design Photo:* ${fullImgUrl}`,
+      ``,
+      `Kindly advise on consultation availability. Thank you!`,
+    ].join("\n");
 
     return `https://wa.me/${SHOP_CONFIG.contact.whatsapp}?text=${encodeURIComponent(
       text
@@ -105,7 +125,7 @@ Kindly advise on consultation availability.`;
                       {SHOP_CONFIG.hours.weekday}
                     </span>
                     <span className="text-[#5E7560] block">
-                      {SHOP_CONFIG.hours.saturday}
+                      {SHOP_CONFIG.hours.weekend || SHOP_CONFIG.hours.saturday}
                     </span>
                     <span className="text-[#C5A880] font-medium block mt-1">
                       {SHOP_CONFIG.hours.consultations}
@@ -148,24 +168,33 @@ Kindly advise on consultation availability.`;
               </div>
             </div>
 
-            {/* Map & Appointment Card */}
-            <div className="relative h-56 rounded-3xl overflow-hidden border border-[#EAE1D9] shadow-sm bg-[#EBD7CD]/30 flex items-center justify-center p-6 text-center">
+            {/* Map & 3 Branches Card */}
+            <div className="relative rounded-3xl overflow-hidden border border-[#EAE1D9] shadow-sm bg-[#EBD7CD]/30 flex flex-col items-center justify-center p-6 text-center">
               <div className="space-y-2">
-                <MapPin className="w-8 h-8 text-[#4A1521] mx-auto animate-bounce" />
+                <MapPin className="w-7 h-7 text-[#4A1521] mx-auto" />
                 <h4 className="font-cinzel text-lg text-[#0D1E17]">
-                  Private Atelier Tours
+                  3 Studios in Bengaluru
                 </h4>
                 <p className="text-xs text-[#7E927F] max-w-xs font-sans">
-                  Scent garden walkthroughs and bridal mockup presentations available by prior reservation.
+                  Visit our RT Nagar, Sultan Palya, and Dinnur Main Road branches or consult our master florists in person.
                 </p>
-                <a
-                  href={getGoogleMapsUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-xs uppercase tracking-wider text-[#4A1521] font-semibold underline underline-offset-4 mt-2 font-mono hover:text-[#0D1E17] transition-colors"
-                >
-                  Open in Google Maps ↗
-                </a>
+                <div className="pt-2 flex items-center justify-center gap-4 text-xs font-mono">
+                  <Link
+                    href="/about#locations"
+                    className="text-[#4A1521] font-semibold underline underline-offset-4 hover:text-[#0D1E17] transition-colors"
+                  >
+                    View 3 Branches ↗
+                  </Link>
+                  <span className="text-[#C5A880]">•</span>
+                  <a
+                    href={getGoogleMapsUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#4A1521] font-semibold underline underline-offset-4 hover:text-[#0D1E17] transition-colors"
+                  >
+                    Google Maps ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -237,6 +266,9 @@ Kindly advise on consultation availability.`;
                     <option value="Festive & Celebration Decor">Festive &amp; Celebration Decor</option>
                     <option value="Corporate & Fashion Runway Styling">Runway &amp; Brand Styling</option>
                   </select>
+                  <span className="text-[10px] text-[#8E785C] block mt-1 font-mono">
+                    📸 Reference portfolio image will be automatically attached to your WhatsApp message
+                  </span>
                 </div>
 
                 <div>

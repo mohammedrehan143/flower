@@ -9,15 +9,12 @@ import {
   Phone,
   Mail,
   ExternalLink,
-  Navigation,
   Check,
   Copy,
 } from "lucide-react";
 import {
   SHOP_CONFIG,
   getWhatsAppInquiryLink,
-  getGoogleMapsUrl,
-  getGoogleDirectionsUrl,
   getPhoneCallLink,
   getEmailLink,
 } from "@/config/shop";
@@ -29,8 +26,6 @@ export default function Footer() {
   const whatsappUrl = getWhatsAppInquiryLink(
     "Hello SMG FLOWER, I would like to inquire about your floral collections, custom orders, or consultation."
   );
-  const mapsUrl = getGoogleMapsUrl();
-  const directionsUrl = getGoogleDirectionsUrl();
   const phoneLink = getPhoneCallLink();
   const emailLink = getEmailLink("Floral Portfolio Inquiry");
 
@@ -99,72 +94,66 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Atelier Location & Google Maps Link (3 cols) */}
+          {/* Column 2: Where We Are Located - 3 Shops (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-semibold flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-[#C5A880]" />
-              <span>Atelier &amp; Glasshouse</span>
+              <span>Where We Are Located</span>
             </h4>
+            <p className="text-[11px] text-[#8F9E8B]">
+              Visit our 3 flower shops in Bengaluru:
+            </p>
 
-            <div className="space-y-1.5 text-xs text-[#FAF7F2]/80 font-sans">
-              <p className="text-white font-medium">{SHOP_CONFIG.address.street}</p>
-              <p>
-                {SHOP_CONFIG.address.city}, {SHOP_CONFIG.address.state} {SHOP_CONFIG.address.postalCode}
-              </p>
-              <p className="text-[#8F9E8B]">{SHOP_CONFIG.address.country}</p>
-              {SHOP_CONFIG.address.landmark && (
-                <p className="text-[11px] text-[#C5A880]/80 italic pt-0.5">
-                  Ref: {SHOP_CONFIG.address.landmark}
-                </p>
-              )}
-            </div>
-
-            {/* Direct Google Maps Actions */}
-            <div className="pt-2 flex flex-col gap-2">
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-[#C5A880]/30 hover:border-[#C5A880] text-xs text-[#FAF7F2] font-medium transition-all group cursor-pointer"
-                title="Open address directly in Google Maps"
-              >
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#C5A880] group-hover:scale-110 transition-transform" />
-                  <span>View on Google Maps</span>
-                </span>
-                <ExternalLink className="w-3 h-3 text-[#C5A880] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-              </a>
-
-              <div className="flex items-center gap-2">
+            {/* 3 Google Maps Shop Links */}
+            <div className="space-y-2">
+              {SHOP_CONFIG.branches.map((branch) => (
                 <a
-                  href={directionsUrl}
+                  key={branch.id}
+                  href={branch.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-[11px] text-[#8F9E8B] hover:text-[#FAF7F2] transition-colors border border-white/5"
+                  className="block p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#C5A880]/50 transition-all group cursor-pointer"
+                  title={`Open ${branch.name} on Google Maps`}
                 >
-                  <Navigation className="w-3 h-3 text-[#C5A880]" />
-                  <span>Get Directions</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3 h-3 text-[#C5A880] shrink-0 group-hover:scale-110 transition-transform" />
+                        <span className="font-medium text-xs text-white group-hover:text-[#EAD8CE] truncate">
+                          {branch.name}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-[#8F9E8B] group-hover:text-[#FAF7F2]/80 truncate pl-4.5">
+                        {branch.area}
+                      </p>
+                    </div>
+                    <ExternalLink className="w-3 h-3 text-[#C5A880] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 shrink-0 transition-all" />
+                  </div>
                 </a>
+              ))}
+            </div>
 
-                <button
-                  type="button"
-                  onClick={handleCopyAddress}
-                  className="px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-[11px] text-[#8F9E8B] hover:text-[#FAF7F2] transition-colors border border-white/5 flex items-center gap-1"
-                  title="Copy address to clipboard"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3 h-3 text-emerald-400" />
-                      <span className="text-emerald-400 text-[10px]">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3 text-[#C5A880]" />
-                      <span className="text-[10px]">Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
+            {/* Quick Actions: Copy Address */}
+            <div className="pt-1 flex items-center justify-between gap-2 text-[11px] text-[#8F9E8B]">
+              <span className="truncate">RT Nagar, Bengaluru</span>
+              <button
+                type="button"
+                onClick={handleCopyAddress}
+                className="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-[11px] text-[#C5A880] hover:text-white transition-colors border border-white/5 flex items-center gap-1 shrink-0 cursor-pointer"
+                title="Copy primary shop address"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3 h-3 text-emerald-400" />
+                    <span className="text-emerald-400 text-[10px]">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3" />
+                    <span className="text-[10px]">Copy Address</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
 
@@ -248,23 +237,16 @@ export default function Footer() {
             <div className="space-y-2 text-xs text-[#FAF7F2]/80 font-sans">
               <div>
                 <span className="text-[11px] text-[#8F9E8B] block uppercase tracking-wider">
-                  Mon – Fri
+                  Mon – Fri (Weekdays)
                 </span>
-                <span className="font-medium text-white">8:00 AM – 8:00 PM</span>
+                <span className="font-medium text-white">8:00 AM – 9:00 PM</span>
               </div>
 
               <div>
                 <span className="text-[11px] text-[#8F9E8B] block uppercase tracking-wider">
-                  Saturday
+                  Sat – Sun (Weekends)
                 </span>
-                <span className="font-medium text-white">8:30 AM – 7:30 PM</span>
-              </div>
-
-              <div>
-                <span className="text-[11px] text-[#8F9E8B] block uppercase tracking-wider">
-                  Sunday
-                </span>
-                <span className="font-medium text-white">9:00 AM – 5:00 PM</span>
+                <span className="font-medium text-white">7:00 AM – 9:30 PM</span>
               </div>
 
               <div className="pt-1 border-t border-white/10">
@@ -283,9 +265,9 @@ export default function Footer() {
             Services
           </a>
           <span className="text-white/20 hidden sm:inline">•</span>
-          <a href="#about" className="hover:text-[#C5A880] transition-colors">
-            Our Story
-          </a>
+          <Link href="/about" className="hover:text-[#C5A880] transition-colors">
+            About Us
+          </Link>
           <span className="text-white/20 hidden sm:inline">•</span>
           <a href="#gallery" className="hover:text-[#C5A880] transition-colors">
             Moments in Bloom

@@ -6,8 +6,8 @@ import { SHOP_CONFIG } from "@/config/shop";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  themeColor: "#0D1E17",
 };
 
 const cinzel = Cinzel({
@@ -42,33 +42,42 @@ const pinyon = Pinyon_Script({
 export const metadata: Metadata = {
   metadataBase: new URL(SHOP_CONFIG.meta.siteUrl),
   title: {
-    default: `${SHOP_CONFIG.name} — Haute Botanique, Luxury Car Decor & Scenography Portfolio`,
+    default: `Luxury Florist & Designed Bouquets | ${SHOP_CONFIG.name}`,
     template: `%s | ${SHOP_CONFIG.name}`,
   },
   description:
-    "Private floral atelier portfolio showcasing luxury car decor, estate botanical interiors, couture bouquets, artisanal chocolate floral arrangements, and wedding scenography.",
+    "SMG FLOWER is a premier luxury floral atelier specializing in bespoke wedding car flower decor, morning-cut fresh bouquets, chocolate floral arrangements, and event scenography.",
   keywords: [
-    "luxury florist portfolio",
-    "wedding car flower decor",
-    "home botanical decor",
+    "SMG FLOWER",
+    "florist near me",
+    "flower shop",
+    "wedding car flower decoration",
+    "hand bouquets",
     "chocolate flower bouquets",
-    "couture bouquets",
-    "event floral scenography",
-    "stage floral design",
-    "botanical architecture",
+    "fresh cut flowers",
+    "luxury floral design",
+    "custom bouquet delivery",
+    "floral scenography",
   ],
   authors: [{ name: SHOP_CONFIG.name }],
   creator: SHOP_CONFIG.name,
+  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SHOP_CONFIG.meta.siteUrl,
-    title: `${SHOP_CONFIG.name} — Haute Botanique & Floral Architecture Portfolio`,
-    description: SHOP_CONFIG.subTagline,
+    title: `Luxury Florist & Designed Bouquets | ${SHOP_CONFIG.name}`,
+    description:
+      "Handcrafted wedding car decor, morning-cut fresh bouquets, and artisanal floral arrangements by SMG FLOWER. Contact us for bespoke orders.",
     siteName: SHOP_CONFIG.name,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1200&q=85",
+        url: `${SHOP_CONFIG.meta.siteUrl}/images/f1.avif`,
         width: 1200,
         height: 630,
         alt: `${SHOP_CONFIG.name} Haute Floral Portfolio`,
@@ -77,13 +86,21 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SHOP_CONFIG.name} — Haute Floral Portfolio`,
-    description: SHOP_CONFIG.subTagline,
-    images: ["https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1200&q=85"],
+    title: `Luxury Florist & Designed Bouquets | ${SHOP_CONFIG.name}`,
+    description:
+      "Handcrafted wedding car decor, morning-cut fresh bouquets, and artisanal floral arrangements by SMG FLOWER.",
+    images: [`${SHOP_CONFIG.meta.siteUrl}/images/f1.avif`],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: "/",

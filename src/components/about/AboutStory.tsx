@@ -69,7 +69,9 @@ export default function AboutStory() {
   }, [selectedPhoto, handleKeyDown]);
 
   const customOrderWhatsappUrl = getWhatsAppInquiryLink(
-    "Hello SMG FLOWER, I would like to enquire about placing a custom order tailored to my specific preferences and celebration."
+    "Hello SMG FLOWER, I would like to enquire about placing a custom order tailored to my specific preferences and celebration.",
+    "/images/f1.avif",
+    "Bespoke Atelier Commission"
   );
 
   return (
@@ -88,22 +90,6 @@ export default function AboutStory() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Navigation Back Bar on Section */}
-        <div className="mb-6 flex items-center justify-between pb-3 border-b border-[#E8DEC8]/60">
-          <a
-            href="#services"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white hover:bg-[#0D1E17] text-[#0D1E17] hover:text-white border border-[#E0D4C3] text-xs font-medium tracking-wider uppercase transition-all shadow-2xs group"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Services</span>
-          </a>
-
-          <span className="font-calligraphy text-sm sm:text-base text-[#8E785C]">
-            L&apos;Atelier Craftsmanship & Story ♡
-          </span>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
           
           {/* ========================================================= */}
@@ -270,7 +256,7 @@ export default function AboutStory() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
                     <span className="text-[10px] font-mono tracking-widest uppercase text-[#8E785C] font-semibold">
                       BESPOKE COMMISSIONS
                     </span>
@@ -278,9 +264,9 @@ export default function AboutStory() {
                       Warmly Welcomed ♡
                     </span>
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg text-[#0D1E17] font-medium leading-snug">
+                  <h3 className="font-serif text-base sm:text-lg text-[#0D1E17] font-medium leading-snug">
                     Have a personal dream or custom design in mind?
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#5C5346] font-sans leading-relaxed">
                     We happily accept custom orders for any occasion—whether it&apos;s a specific floral color palette, a personalized chocolate creation, or an elaborate vehicle dressing. We craft each detail to your heart&apos;s desire.
                   </p>

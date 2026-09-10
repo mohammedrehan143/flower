@@ -92,8 +92,8 @@ export const PORTFOLIO_WORKS: PortfolioWork[] = [
     designBrief:
       "Food-grade stem mounts isolate delicate confectioneries from floral hydration, ensuring chocolates remain perfectly tempered while blooms flourish in fresh water vials.",
     dimensions: "55cm H × 45cm W",
-    image: "/f1.avif",
-    secondaryImage: "/f1.avif",
+    image: "/images/f1.avif",
+    secondaryImage: "/images/f1.avif",
     isHeroFeature: true,
   },
   {
@@ -290,79 +290,6 @@ export const PORTFOLIO_WORKS: PortfolioWork[] = [
     dimensions: "4.2m Fireplace Mantel Garland",
     image: "https://images.unsplash.com/photo-1509744645300-a2098b11871a?auto=format&fit=crop&w=1200&q=85",
     secondaryImage: "https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=1200&q=85",
-  },
-];
-
-export interface DecorativeDiscipline {
-  id: string;
-  name: string;
-  frenchTitle: string;
-  tagline: string;
-  image: string;
-  summary: string;
-  typicalApplications: string[];
-}
-
-export const DECORATIVE_DISCIPLINES: DecorativeDiscipline[] = [
-  {
-    id: "car-decor",
-    name: "Luxury Car Decor",
-    frenchTitle: "Décors Automobiles d'Exception",
-    tagline: "Bridal limousines, vintage convertibles, and processional car floral styling.",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "Sculptural floral bonnet swags, door posies, and rear garland architecture tailored with scratch-free mounts for luxury vehicles.",
-    typicalApplications: ["Wedding Getaway Cars", "VIP Processionals", "Vintage Convertibles", "Anniversary Rides"],
-  },
-  {
-    id: "chocolate-bouquets",
-    name: "Artisanal Chocolate Bouquets",
-    frenchTitle: "Bouquets Gourmands & Chocolats Fins",
-    tagline: "Belgian truffles and Swiss pralines harmoniously hand-tied with fresh garden blooms.",
-    image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "An indulgent celebration pairing premier artisan chocolates with fresh heirloom roses, dahlias, and delicate ribbons.",
-    typicalApplications: ["Milestone Birthdays", "Romantic Gestures", "Executive Luxury Gifting", "Thank You Tributes"],
-  },
-  {
-    id: "home-decor",
-    name: "Estate & Home Botanical Decor",
-    frenchTitle: "Architecture Florale d'Intérieur",
-    tagline: "Monumental foyer urns, banqueting table runners, and salon floral styling.",
-    image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "Transforming grand residences, penthouses, and private estates into living botanical sanctuaries with curated seasonal stems.",
-    typicalApplications: ["Entry Foyer Urns", "Banqueting Tables", "Fireplace Mantels", "Penthouse Terraces"],
-  },
-  {
-    id: "bouquets",
-    name: "Haute Couture Bouquets",
-    frenchTitle: "Bouquets Façonnés à la Main",
-    tagline: "French hand-tied bouquets of David Austin roses and rare dawn-harvested stems.",
-    image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "Sculptural arrangements bound with raw French silk ribbon and enclosed in wax-sealed presentation coffers.",
-    typicalApplications: ["Anniversaries", "Declaration of Love", "Personal Milestones", "Collector Tributes"],
-  },
-  {
-    id: "wedding-stage",
-    name: "Wedding & Stage Scenography",
-    frenchTitle: "Scénographie de Scène & Mariages",
-    tagline: "Monumental ceremony arches, suspended floral ceilings, and stage backdrops.",
-    image: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "Full venue transformation and architectural stage floristry for unforgettable ceremonies and runway productions.",
-    typicalApplications: ["Cathedral Arches", "Suspended Ceilings", "Aisle Florals", "Fashion Runway Sets"],
-  },
-  {
-    id: "festive-decor",
-    name: "Festive & Celebration Decor",
-    frenchTitle: "Installations de Fête & Soirées",
-    tagline: "Holiday mantel installations, gala photo backdrops, and celebration florals.",
-    image: "https://images.unsplash.com/photo-1509744645300-a2098b11871a?auto=format&fit=crop&w=800&q=85",
-    summary:
-      "Atmospheric seasonal styling with rich evergreens, gilded botanical foliage, and velvet florals.",
-    typicalApplications: ["Winter Solstice", "Gala Backdrops", "Private Soirées", "Corporate Receptions"],
   },
 ];
 

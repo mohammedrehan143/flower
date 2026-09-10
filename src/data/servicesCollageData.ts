@@ -1,4 +1,4 @@
-import { SHOP_CONFIG } from "@/config/shop";
+import { SHOP_CONFIG, getFullImageUrl } from "@/config/shop";
 
 export interface CollageItem {
   id: string;
@@ -28,18 +28,13 @@ export const getServiceWhatsAppLink = (
   title: string,
   imgSrc: string
 ) => {
-  const origin =
-    typeof window !== "undefined" && window.location.origin
-      ? window.location.origin
-      : SHOP_CONFIG.meta.siteUrl;
-
-  const fullImageUrl = imgSrc.startsWith("http") ? imgSrc : `${origin}${imgSrc}`;
+  const fullImageUrl = getFullImageUrl(imgSrc);
 
   const message = [
-    `Hello SMG FLOWER,`,
+    `Hello ${SHOP_CONFIG.name},`,
     ``,
-    `I am enquiring about this design from your *${serviceName}* scrapbook:`,
-    `💐 Design: *${title}*`,
+    `I am enquiring about this design from your *${serviceName}* collection:`,
+    `💐 Design: *${title}* (${code})`,
     `📸 Image Reference: ${fullImageUrl}`,
     ``,
     `Please share pricing, customisation options, and delivery availability. Thank you!`,

@@ -414,12 +414,12 @@ export default function ServicesSection() {
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-serif text-sm sm:text-base text-[#0D1E17] font-medium">
+              <p className="font-serif text-sm sm:text-base text-[#0D1E17] font-medium">
                 Custom Orders Warmly Welcomed
                 <span className="font-calligraphy text-base sm:text-lg text-[#B86874] ml-1.5">
                   With Love ♡
                 </span>
-              </h4>
+              </p>
               <p className="text-xs text-[#6E6355] font-sans">
                 Looking for a specific flower, personalized confectionery bouquet, or bespoke car dressing? We happily bring your vision to life.
               </p>
@@ -549,7 +549,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[0].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[0].whatsappMessage, SERVICES[0].image, SERVICES[0].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -568,31 +568,31 @@ export default function ServicesSection() {
             <div className="col-span-4 flex justify-end relative">
               
               {/* Micro-text on top right margin */}
-              <div className="absolute -top-6 right-0 font-mono text-[9px] uppercase tracking-[0.25em] text-[#8E867B] opacity-75 text-right select-none leading-relaxed">
-                FOR THE ONES WHO<br />BELIEVE IN BEAUTIFUL BEGINNINGS
-                <div className="h-[1px] w-8 bg-[#8E867B]/40 ml-auto mt-1" />
+              <div className="hidden lg:block absolute -top-4 right-2 text-[9px] uppercase tracking-[0.2em] text-[#8E867B] font-mono select-none">
+                Processionals • Stage Canopies
               </div>
 
-              <div className="group relative inline-flex items-stretch bg-transparent -rotate-[1.5deg] hover:rotate-0 transition-all duration-500 max-w-[420px]">
+              <div className="group relative inline-flex items-stretch bg-transparent rotate-[1.2deg] hover:rotate-0 transition-all duration-500 max-w-[390px] xl:max-w-[420px]">
                 
-                {/* Silver Metallic Paperclip at Top */}
-                <div className="absolute -top-5 left-14 z-30 pointer-events-none">
-                  <PaperclipSvg className="w-6 h-12" />
-                </div>
-
                 {/* Polaroid Photo - Click to open Wedding Collage */}
                 <div 
                   onClick={() => setActiveServiceCollage("wedding-florals")}
                   className="relative w-44 xl:w-48 h-56 xl:h-64 bg-white p-2.5 shadow-[0_8px_24px_rgba(13,30,23,0.12)] border border-[#EBE4D8] rounded-xs shrink-0 z-10 group-hover:shadow-[0_14px_32px_rgba(13,30,23,0.16)] transition-all cursor-pointer block"
                   title="Click to open Wedding Florals Scrapbook Collage"
                 >
+                  {/* Washi Tape Strip */}
+                  <WashiTape className="-top-3 left-6 w-24 -rotate-3" />
+
+                  {/* Paperclip */}
+                  <div className="absolute -top-3.5 right-4 z-20">
+                    <PaperclipSvg className="w-5 h-10" />
+                  </div>
+
                   <div className="relative w-full h-full overflow-hidden bg-[#FAF6F0]">
                     <Image
                       src={SERVICES[1].image}
                       alt={SERVICES[1].alt}
                       fill
-                      priority
-                      loading="eager"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 1280px) 200px, 220px"
                     />
@@ -629,7 +629,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[1].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[1].whatsappMessage, SERVICES[1].image, SERVICES[1].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -712,7 +712,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[2].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[2].whatsappMessage, SERVICES[2].image, SERVICES[2].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -780,7 +780,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[3].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[3].whatsappMessage, SERVICES[3].image, SERVICES[3].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -868,7 +868,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[4].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[4].whatsappMessage, SERVICES[4].image, SERVICES[4].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -934,7 +934,7 @@ export default function ServicesSection() {
                   </div>
 
                   <a
-                    href={getWhatsAppInquiryLink(SERVICES[5].whatsappMessage)}
+                    href={getWhatsAppInquiryLink(SERVICES[5].whatsappMessage, SERVICES[5].image, SERVICES[5].title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.18em] font-medium text-[#0D1E17] hover:text-[#B86874] transition-colors mt-3 pt-2 border-t border-[#F0E9DF] group/link"
@@ -1091,7 +1091,7 @@ export default function ServicesSection() {
 
                       {/* Dark Green Pill Enquire Button */}
                       <a
-                        href={getWhatsAppInquiryLink(service.whatsappMessage)}
+                        href={getWhatsAppInquiryLink(service.whatsappMessage, service.image, service.title)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-between w-full py-1.5 px-2.5 sm:py-2 sm:px-3 rounded-full bg-[#0D1E17] hover:bg-[#1A382B] text-[#FAF7F2] text-[9.5px] sm:text-[10.5px] font-medium tracking-[0.14em] uppercase transition-colors shadow-xs group"

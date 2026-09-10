@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Sparkles, Maximize2, X, ChevronLeft, ChevronRight, MessageCircle, ArrowLeft } from "lucide-react";
-import { SHOP_CONFIG } from "@/config/shop";
+import { SHOP_CONFIG, getFullImageUrl } from "@/config/shop";
 
 interface GalleryPhoto {
   id: string;
@@ -209,19 +209,14 @@ export default function GallerySection() {
   }, [lightboxIndex, nextPhoto, prevPhoto]);
 
   const getLightboxWhatsAppLink = (photo: GalleryPhoto) => {
-    const origin =
-      typeof window !== "undefined" && window.location.origin
-        ? window.location.origin
-        : SHOP_CONFIG.meta.siteUrl;
-
-    const fullImageUrl = photo.src.startsWith("http") ? photo.src : `${origin}${photo.src}`;
+    const fullImageUrl = getFullImageUrl(photo.src);
 
     const message = [
-      `Hello SMG FLOWER,`,
+      `Hello ${SHOP_CONFIG.name},`,
       ``,
       `I saw this design in your *Moments in Bloom* gallery and would like to inquire:`,
       `💐 Piece: *${photo.title}*`,
-      `📸 Image Reference: ${fullImageUrl}`,
+      `📸 Image Link: ${fullImageUrl}`,
       ``,
       `Please share pricing and availability. Thank you!`,
     ].join("\n");
@@ -316,9 +311,9 @@ export default function GallerySection() {
 
               {/* Bottom Caption */}
               <div className="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-6 sm:right-6 text-white transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <h4 className="font-serif text-base sm:text-lg font-normal leading-tight drop-shadow-md">
+                <h3 className="font-serif text-base sm:text-lg font-normal leading-tight drop-shadow-md">
                   {photo.title}
-                </h4>
+                </h3>
                 <p className="text-[11px] text-[#FAF7F2]/90 line-clamp-1 mt-1 font-sans drop-shadow-sm">
                   {photo.caption}
                 </p>

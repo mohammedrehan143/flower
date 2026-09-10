@@ -8,5 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: `${SHOP_CONFIG.meta.siteUrl}/sitemap.xml`,
+    host: SHOP_CONFIG.meta.siteUrl,
   };
 }

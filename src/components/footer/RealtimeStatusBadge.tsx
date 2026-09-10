@@ -16,9 +16,9 @@ export default function RealtimeStatusBadge({
   if (!isMounted) {
     return (
       <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-[#FAF7F2]/80">
-        <span className="w-2 h-2 rounded-full bg-emerald-500/60 animate-pulse" />
+        <span className="w-2 h-2 rounded-full bg-[#C5A880]/70" />
         <span className="tracking-wide text-[11px] uppercase font-mono">
-          Atelier Hours • 8:00 AM – 8:00 PM
+          Atelier Hours • Weekdays 8 AM–9 PM | Weekends 7 AM–9:30 PM
         </span>
       </div>
     );
@@ -29,16 +29,11 @@ export default function RealtimeStatusBadge({
       <div className="p-4 rounded-2xl bg-white/[0.04] border border-[#C5A880]/20 space-y-2 text-left">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              {isOpen && (
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              )}
-              <span
-                className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
-                  isOpen ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]" : "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.7)]"
-                }`}
-              />
-            </span>
+            <span
+              className={`inline-block w-2.5 h-2.5 rounded-full ${
+                isOpen ? "bg-emerald-500" : "bg-amber-500"
+              }`}
+            />
             <span
               className={`text-xs font-semibold uppercase tracking-[0.18em] ${
                 isOpen ? "text-emerald-400" : "text-amber-400"
@@ -67,16 +62,11 @@ export default function RealtimeStatusBadge({
   return (
     <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-3.5 py-1.5 rounded-full bg-black/30 border border-[#C5A880]/25 backdrop-blur-md shadow-sm">
       <div className="flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          {isOpen && (
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          )}
-          <span
-            className={`relative inline-flex rounded-full h-2 w-2 ${
-              isOpen ? "bg-emerald-500" : "bg-amber-400"
-            }`}
-          />
-        </span>
+        <span
+          className={`inline-block w-2 h-2 rounded-full ${
+            isOpen ? "bg-emerald-500" : "bg-amber-400"
+          }`}
+        />
         <span
           className={`text-[11px] font-semibold uppercase tracking-[0.2em] font-mono ${
             isOpen ? "text-emerald-300" : "text-amber-300"

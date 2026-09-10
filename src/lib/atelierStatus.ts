@@ -17,13 +17,13 @@ export function computeAtelierStatus(date: Date = new Date()): AtelierRealtimeSt
   const tz = operatingSchedule?.timezone || "Asia/Kolkata";
   const timezoneLabel = operatingSchedule?.timezoneLabel || "IST";
   const schedule = operatingSchedule?.rules || {
-    0: { isOpen: true, openMinutes: 9 * 60, closeMinutes: 17 * 60, openLabel: "9:00 AM", closeLabel: "5:00 PM" },
-    1: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" },
-    2: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" },
-    3: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" },
-    4: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" },
-    5: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 20 * 60, openLabel: "8:00 AM", closeLabel: "8:00 PM" },
-    6: { isOpen: true, openMinutes: 8.5 * 60, closeMinutes: 19.5 * 60, openLabel: "8:30 AM", closeLabel: "7:30 PM" },
+    0: { isOpen: true, openMinutes: 7 * 60, closeMinutes: 21 * 60 + 30, openLabel: "7:00 AM", closeLabel: "9:30 PM" },
+    1: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" },
+    2: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" },
+    3: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" },
+    4: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" },
+    5: { isOpen: true, openMinutes: 8 * 60, closeMinutes: 21 * 60, openLabel: "8:00 AM", closeLabel: "9:00 PM" },
+    6: { isOpen: true, openMinutes: 7 * 60, closeMinutes: 21 * 60 + 30, openLabel: "7:00 AM", closeLabel: "9:30 PM" },
   };
 
   try {
@@ -113,7 +113,7 @@ export function computeAtelierStatus(date: Date = new Date()): AtelierRealtimeSt
       isMounted: true,
       isOpen: true,
       statusBadge: "Open Today",
-      statusDetail: "Mon – Fri: 8:00 AM – 8:00 PM",
+      statusDetail: "Mon – Fri: 8:00 AM – 9:00 PM | Sat – Sun: 7:00 AM – 9:30 PM",
       currentTimeString: "",
       timezoneLabel,
     };
@@ -125,7 +125,7 @@ export function useAtelierRealtimeStatus(): AtelierRealtimeStatus {
     isMounted: false,
     isOpen: true,
     statusBadge: "Open Today",
-    statusDetail: "Mon – Fri: 8:00 AM – 8:00 PM",
+    statusDetail: "Mon – Fri: 8:00 AM – 9:00 PM | Sat – Sun: 7:00 AM – 9:30 PM",
     currentTimeString: "",
     timezoneLabel: SHOP_CONFIG.operatingSchedule?.timezoneLabel || "IST",
   });

@@ -15,5 +15,5 @@ export default function BouquetsPage() {
     }
   };
 
-  return <BouquetCollageModal onClose={handleBack} />;
+  return <BouquetCollageModal onClose={handleBack} asPage={true} />;
 }
