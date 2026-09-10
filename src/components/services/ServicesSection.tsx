@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Sparkles, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -35,7 +35,7 @@ const SERVICES: ServiceItem[] = [
     alt: "Luxury hand-tied floral bouquet with fresh red roses",
     tag: "For Brighter You ♡",
     rotation: "rotate-[1.5deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to inquire about your Hand Bouquets collection.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to inquire about your Hand Bouquets collection.",
     href: "/bouquets",
   },
   {
@@ -49,7 +49,7 @@ const SERVICES: ServiceItem[] = [
     hasPaperclip: true,
     hasWashiTape: true,
     rotation: "-rotate-[1.5deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to inquire about bespoke Wedding Florals and ceremonial car decor.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to inquire about bespoke Wedding Florals and ceremonial car decor.",
   },
   {
     id: "custom-arrangements",
@@ -61,7 +61,7 @@ const SERVICES: ServiceItem[] = [
     alt: "Artisanal tiered chocolate tower cake and red velvet roses signature creation",
     hasWashiTape: true,
     rotation: "-rotate-[2deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to commission a Custom Floral Arrangement.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to commission a Custom Floral Arrangement.",
   },
   {
     id: "sympathy-flowers",
@@ -74,7 +74,7 @@ const SERVICES: ServiceItem[] = [
     tag: "In Loving Memory ♡",
     hasWashiTape: true,
     rotation: "rotate-[1.5deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to inquire about Sympathy and tribute floral arrangements.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to inquire about Sympathy and tribute floral arrangements.",
   },
   {
     id: "plants-greenery",
@@ -86,7 +86,7 @@ const SERVICES: ServiceItem[] = [
     alt: "Grand stargazer lilies and exotic botanical orchid living basket",
     hasWashiTape: true,
     rotation: "rotate-[1deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to explore your Plants & Greenery botanical collection.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to explore your Plants & Greenery botanical collection.",
   },
   {
     id: "event-decor",
@@ -98,7 +98,7 @@ const SERVICES: ServiceItem[] = [
     alt: "Royal blue tulle and rose gala scenography and monumental event styling",
     hasWashiTape: true,
     rotation: "-rotate-[1.5deg]",
-    whatsappMessage: "Hello Fleurissant Atelier, I would like to inquire about Event Floral Decor and monumental scenography.",
+    whatsappMessage: "Hello SMG FLOWER, I would like to inquire about Event Floral Decor and monumental scenography.",
   },
 ];
 
@@ -259,7 +259,7 @@ function BotanicalSealStamp() {
         />
         <text className="text-[9px] uppercase tracking-[0.26em] fill-[#9E7B58] font-mono font-medium">
           <textPath href="#stampPath">
-            • FLOWERS MAKE BRIGHTER TOMORROW • FLEURISSANT •
+            • FLOWERS MAKE BRIGHTER TOMORROW • SMG FLOWER •
           </textPath>
         </text>
         <circle
@@ -300,6 +300,50 @@ export default function ServicesSection() {
 
   // State to track which service scrapbook collage is currently open (null when closed)
   const [activeServiceCollage, setActiveServiceCollage] = useState<string | null>(null);
+
+  // Listen for openServiceCollage custom events and URL hash changes
+  useEffect(() => {
+    const handleOpenService = (event: Event) => {
+      const customEvent = event as CustomEvent<{ serviceId: string; category?: string }>;
+      const { serviceId, category } = customEvent.detail || {};
+
+      if (category) {
+        setActiveCategory(category);
+      }
+      if (serviceId && SERVICES_COLLAGE_DATA[serviceId]) {
+        setActiveServiceCollage(serviceId);
+      }
+
+      // Smooth scroll to services
+      const servicesEl = document.getElementById("services");
+      if (servicesEl) {
+        servicesEl.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("openServiceCollage", handleOpenService);
+
+    // Also check URL hash if opened via direct anchor like #service-hand-bouquets
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith("#service-")) {
+        const id = hash.replace("#service-", "");
+        const service = SERVICES.find((s) => s.id === id);
+        if (service) {
+          setActiveCategory(service.category);
+          setActiveServiceCollage(id);
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+
+    return () => {
+      window.removeEventListener("openServiceCollage", handleOpenService);
+      window.removeEventListener("hashchange", handleHash);
+    };
+  }, []);
 
   const filteredServices =
     activeCategory === "All"
@@ -383,7 +427,7 @@ export default function ServicesSection() {
           </div>
 
           <a
-            href={getWhatsAppInquiryLink("Hello Fleurissant Atelier, I would like to enquire about placing a custom floral or confectionery order.")}
+            href={getWhatsAppInquiryLink("Hello SMG FLOWER, I would like to enquire about placing a custom floral or confectionery order.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0D1E17] hover:bg-[#25D366] text-white text-[11px] font-medium tracking-wider uppercase transition-colors shrink-0 shadow-xs cursor-pointer active:scale-95"
@@ -436,7 +480,7 @@ export default function ServicesSection() {
                 </button>
 
                 <a
-                  href={getWhatsAppInquiryLink("Hello Fleurissant Atelier, I would like to explore your services and custom commissions.")}
+                  href={getWhatsAppInquiryLink("Hello SMG FLOWER, I would like to explore your services and custom commissions.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#0D1E17]/30 bg-transparent hover:bg-white text-[#0D1E17] text-xs font-medium tracking-[0.18em] uppercase transition-all shadow-xs"
@@ -547,6 +591,8 @@ export default function ServicesSection() {
                       src={SERVICES[1].image}
                       alt={SERVICES[1].alt}
                       fill
+                      priority
+                      loading="eager"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 1280px) 200px, 220px"
                     />
@@ -995,6 +1041,8 @@ export default function ServicesSection() {
                             src={service.image}
                             alt={service.alt}
                             fill
+                            priority={index === 0}
+                            loading={index === 0 ? "eager" : "lazy"}
                             className="object-cover"
                             sizes="(max-width: 640px) 45vw, 200px"
                           />
@@ -1077,6 +1125,8 @@ export default function ServicesSection() {
                             src={service.image}
                             alt={service.alt}
                             fill
+                            priority={service.image.includes("f19")}
+                            loading={service.image.includes("f19") ? "eager" : "lazy"}
                             className="object-cover"
                             sizes="(max-width: 640px) 45vw, 200px"
                           />

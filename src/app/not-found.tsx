@@ -35,7 +35,7 @@ export default function NotFound() {
           </Link>
 
           <a
-            href={getWhatsAppInquiryLink("Hello Fleurissant, I was browsing your portfolio and would like assistance.")}
+            href={getWhatsAppInquiryLink("Hello SMG FLOWER, I was browsing your portfolio and would like assistance.")}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-[#C5A880] text-[#0D1E17] hover:bg-[#F5EFEB] text-xs uppercase tracking-[0.2em] font-medium transition-all"

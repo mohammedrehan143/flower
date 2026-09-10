@@ -69,14 +69,14 @@ export default function AboutStory() {
   }, [selectedPhoto, handleKeyDown]);
 
   const customOrderWhatsappUrl = getWhatsAppInquiryLink(
-    "Hello Fleurissant Atelier, I would like to enquire about placing a custom order tailored to my specific preferences and celebration."
+    "Hello SMG FLOWER, I would like to enquire about placing a custom order tailored to my specific preferences and celebration."
   );
 
   return (
     <section
       id="about"
       className="py-12 sm:py-16 md:py-24 bg-[#FAF7F2] relative overflow-hidden"
-      aria-label="About Fleurissant Brand Story"
+      aria-label="About SMG FLOWER Brand Story"
     >
       {/* Background Texture Accents */}
       <div 
@@ -131,7 +131,7 @@ export default function AboutStory() {
                 <div className="relative aspect-[4/5] w-full rounded-xs overflow-hidden bg-[#FAF6F0] mb-3">
                   <Image
                     src="/images/f12.avif"
-                    alt="Grand Scarlet Rose Dome with 50+ fresh red roses hand-crafted at Fleurissant Atelier"
+                    alt="Grand Scarlet Rose Dome with 50+ fresh red roses hand-crafted at SMG FLOWER"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 80vw, 40vw"
@@ -177,7 +177,7 @@ export default function AboutStory() {
                 <div className="relative aspect-square w-full rounded-xs overflow-hidden bg-[#FAF6F0] mb-2">
                   <Image
                     src="/images/f13.avif"
-                    alt="Dewy Scarlet Velvet Heart crafted on palm leaves at Fleurissant"
+                    alt="Dewy Scarlet Velvet Heart crafted on palm leaves at SMG FLOWER"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="250px"
@@ -347,7 +347,7 @@ export default function AboutStory() {
             <div className="relative w-full aspect-[4/3] max-h-[65vh] rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black/40">
               <Image
                 src={selectedPhoto}
-                alt="Fleurissant Atelier Creation"
+                alt="SMG FLOWER Creation"
                 fill
                 className="object-contain"
                 sizes="90vw"
@@ -357,7 +357,7 @@ export default function AboutStory() {
             
             <div className="mt-4 flex flex-col items-center gap-3 text-center text-white">
               <span className="font-calligraphy text-lg text-[#EAD8CE]">
-                Fleurissant Atelier Signature Craftsmanship ♡
+                SMG FLOWER Signature Craftsmanship ♡
               </span>
 
               {/* ACTION ROW: BACK BUTTON + WHATSAPP ENQUIRY BUTTON */}

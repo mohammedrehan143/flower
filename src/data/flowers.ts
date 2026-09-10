@@ -407,38 +407,62 @@ export interface TestimonialItem {
   occasion: string;
   rating: number;
   arrangement: string;
+  date?: string;
+  source?: string;
+  isGoogleReview?: boolean;
+  ownerReply?: {
+    author: string;
+    text: string;
+    date?: string;
+  };
 }
 
 export const PORTFOLIO_TESTIMONIALS: TestimonialItem[] = [
   {
-    id: "t1",
-    quote:
-      "Fleurissant's floral dressing of our vintage 1958 Rolls-Royce Silver Cloud was the absolute crown jewel of our ceremony departure. It held up exquisitely during the Loire Valley drive without a single petal out of place.",
-    client: "Lord Alexander & Camille S.",
-    role: "Private Collector",
-    occasion: "Château Wedding Processional",
+    id: "r1",
+    quote: "They have all kinds of designed bouquets they have varieties of flowers 💐 .",
+    client: "Verified Patron",
+    role: "Google Reviewer",
+    occasion: "Custom Designed Bouquets",
     rating: 5,
-    arrangement: "The Regal Processional Car Garland",
+    arrangement: "Designed Bouquets Collection",
+    date: "8 months ago",
+    source: "Google Review",
+    isGoogleReview: true,
+    ownerReply: {
+      author: "SMG Flower (Owner)",
+      text: "Thanks sir",
+      date: "8 months ago",
+    },
   },
   {
-    id: "t2",
-    quote:
-      "The custom chocolate bouquet combining Belgian gold-dusted truffles with David Austin roses was the most sophisticated luxury gift our maison has ever presented. True botanical couture.",
-    client: "Elena Vance-Moreau",
-    role: "Haute Horlogerie Creative Director",
-    occasion: "VIP Milestone Gala",
+    id: "r2",
+    quote: "Good Quality OF Flower All time Available here",
+    client: "Jayanta Sarkar",
+    role: "Local Guide · 1 review · 92 photos",
+    occasion: "Fresh Daily Flowers & Quality Stems",
     rating: 5,
-    arrangement: "L'Élixir Chocolat & Garden Rose Bouquet",
+    arrangement: "Fresh Flower Assortment",
+    date: "a year ago",
+    source: "Google Review",
+    isGoogleReview: true,
+    ownerReply: {
+      author: "SMG Flower (Owner)",
+      text: "Thanks",
+      date: "a year ago",
+    },
   },
   {
-    id: "t3",
-    quote:
-      "The monumental foyer urn installations and dining table scenography Fleurissant tailored for our Mayfair residence completely transformed our estate into an enchanted sanctuary.",
-    client: "Julian Sterling",
-    role: "Managing Partner, Sterling & Co.",
-    occasion: "Private Estate Dining Scenography",
+    id: "r3",
+    quote: "Very very good",
+    client: "Monisha Sarkar",
+    role: "Verified Reviewer · 1 review",
+    occasion: "Atelier Floral Experience",
     rating: 5,
-    arrangement: "Grand Estate Foyer Urn Installation",
+    arrangement: "Curated Flower Selection",
+    date: "a year ago",
+    source: "Google Review",
+    isGoogleReview: true,
   },
 ];
 

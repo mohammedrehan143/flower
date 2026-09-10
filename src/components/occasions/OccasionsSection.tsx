@@ -174,7 +174,7 @@ export default function OccasionsSection() {
 
               <a
                 href={getWhatsAppInquiryLink(
-                  `Hello Fleurissant, I am planning an upcoming event for "${selectedOccasion.name}". Could we schedule a design consultation?`
+                  `Hello SMG FLOWER, I am planning an upcoming event for "${selectedOccasion.name}". Could we schedule a design consultation?`
                 )}
                 target="_blank"
                 rel="noopener noreferrer"

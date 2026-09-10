@@ -8,7 +8,7 @@ import {
   MessageCircle,
   Calendar,
 } from "lucide-react";
-import { SHOP_CONFIG } from "@/config/shop";
+import { SHOP_CONFIG, getGoogleMapsUrl } from "@/config/shop";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -159,12 +159,10 @@ Kindly advise on consultation availability.`;
                   Scent garden walkthroughs and bridal mockup presentations available by prior reservation.
                 </p>
                 <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(
-                    SHOP_CONFIG.address.formatted
-                  )}`}
+                  href={getGoogleMapsUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-xs uppercase tracking-wider text-[#4A1521] font-semibold underline underline-offset-4 mt-2 font-mono"
+                  className="inline-block text-xs uppercase tracking-wider text-[#4A1521] font-semibold underline underline-offset-4 mt-2 font-mono hover:text-[#0D1E17] transition-colors"
                 >
                   Open in Google Maps ↗
                 </a>
@@ -200,7 +198,7 @@ Kindly advise on consultation availability.`;
                     placeholder="e.g. Lady Vivienne Montgomery"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                    className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                   />
                 </div>
 
@@ -215,7 +213,7 @@ Kindly advise on consultation availability.`;
                     placeholder="+1 (555) 000-0000"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                    className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                   />
                 </div>
               </div>
@@ -229,7 +227,7 @@ Kindly advise on consultation availability.`;
                     name="discipline"
                     value={formData.discipline}
                     onChange={handleChange}
-                    className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                    className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                   >
                     <option value="Luxury Car Decor">Luxury Car Decor &amp; Processionals</option>
                     <option value="Artisanal Chocolate Bouquets">Artisanal Chocolate Bouquets</option>
@@ -251,7 +249,7 @@ Kindly advise on consultation availability.`;
                     name="eventDate"
                     value={formData.eventDate}
                     onChange={handleChange}
-                    className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                    className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                   />
                 </div>
               </div>
@@ -266,7 +264,7 @@ Kindly advise on consultation availability.`;
                   placeholder="e.g. Villa Balbianello / Mayfair Residence"
                   value={formData.location}
                   onChange={handleChange}
-                  className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                  className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                 />
               </div>
 
@@ -280,7 +278,7 @@ Kindly advise on consultation availability.`;
                   value={formData.vision}
                   onChange={handleChange}
                   placeholder="Describe vehicle model, color swatches, favorite botanical varieties, or structural scale requirements..."
-                  className="w-full text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
+                  className="w-full text-base sm:text-xs p-3 rounded-xl border border-[#EAE1D9] bg-[#FAF7F2] focus:outline-none focus:border-[#C5A880]"
                 />
               </div>
 

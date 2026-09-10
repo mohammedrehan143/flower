@@ -36,10 +36,10 @@ export const getServiceWhatsAppLink = (
   const fullImageUrl = imgSrc.startsWith("http") ? imgSrc : `${origin}${imgSrc}`;
 
   const message = [
-    `Hello Fleurissant Atelier,`,
+    `Hello SMG FLOWER,`,
     ``,
     `I am enquiring about this design from your *${serviceName}* scrapbook:`,
-    `💐 Ref: *${code} • ${title}*`,
+    `💐 Design: *${title}*`,
     `📸 Image Reference: ${fullImageUrl}`,
     ``,
     `Please share pricing, customisation options, and delivery availability. Thank you!`,
@@ -55,7 +55,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Hand Bouquets",
     category: "Bouquets",
     scrapbookSubtitle: "Artisanal hand-tied floral bouquets for every emotion",
-    majorBadge: "F1 • MAJOR SIGNATURE PIECE",
+    majorBadge: "MAJOR SIGNATURE PIECE",
     items: [
       {
         id: "f1",
@@ -193,7 +193,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Wedding Florals",
     category: "Weddings",
     scrapbookSubtitle: "Luxury bridal car dressings, ceremonial canopies & wedding processionals",
-    majorBadge: "F19 • MAJOR WEDDING CANOPY",
+    majorBadge: "MAJOR WEDDING CANOPY",
     items: [
       {
         id: "f19",
@@ -299,7 +299,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Custom Arrangements",
     category: "Custom",
     scrapbookSubtitle: "Bespoke confectionery towers, novelty chocolate bouquets & commissioned art",
-    majorBadge: "F22 • MAJOR CONFECTIONERY TOWER",
+    majorBadge: "MAJOR CONFECTIONERY TOWER",
     items: [
       {
         id: "f22",
@@ -384,7 +384,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Sympathy Flowers",
     category: "Sympathy",
     scrapbookSubtitle: "Gentle, dignified tributes, serene white lilies, and comforting condolences",
-    majorBadge: "F11 • MAJOR TRIBUTE SHEAF",
+    majorBadge: "MAJOR TRIBUTE SHEAF",
     items: [
       {
         id: "f11",
@@ -458,7 +458,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Plants & Greenery",
     category: "Plants",
     scrapbookSubtitle: "Botanical arrangements, lush tropical foliage, and living garden styles",
-    majorBadge: "F4 • MAJOR BOTANICAL GARDEN",
+    majorBadge: "MAJOR BOTANICAL GARDEN",
     items: [
       {
         id: "f4",
@@ -532,7 +532,7 @@ export const SERVICES_COLLAGE_DATA: Record<string, ServiceCollageConfig> = {
     title: "Event Decor",
     category: "Events",
     scrapbookSubtitle: "Monumental scenography, grand gala entrances, vehicle dressing & party centerpieces",
-    majorBadge: "F20 • MAJOR ROYAL SCENOGRAPHY",
+    majorBadge: "MAJOR ROYAL SCENOGRAPHY",
     items: [
       {
         id: "f20",

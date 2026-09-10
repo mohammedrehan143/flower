@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cinzel, Cormorant_Garamond, Plus_Jakarta_Sans, Pinyon_Script } from "next/font/google";
 import "./globals.css";
 import { SHOP_CONFIG } from "@/config/shop";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -81,6 +88,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.avif", type: "image/avif" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.avif",
+    apple: "/favicon.avif",
+  },
 };
 
 export default function RootLayout({
@@ -93,6 +108,11 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${cormorant.variable} ${jakarta.variable} ${pinyon.variable} scroll-smooth`}
     >
+      <head>
+        <link rel="icon" href="/favicon.avif" type="image/avif" />
+        <link rel="shortcut icon" href="/favicon.avif" type="image/avif" />
+        <link rel="apple-touch-icon" href="/favicon.avif" />
+      </head>
       <body className="font-sans antialiased text-[#0D1E17] bg-[#FAF7F2] min-h-screen selection:bg-[#EAD8CE] selection:text-[#0D1E17]">
         {children}
       </body>

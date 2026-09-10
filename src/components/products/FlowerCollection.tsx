@@ -173,7 +173,7 @@ export default function FlowerCollection() {
 
                   <a
                     href={getWhatsAppInquiryLink(
-                      `Hello Fleurissant, I am interested in commissioning floral work similar to "${work.title}" (${work.disciplineLabel}). Could you share design details?`
+                      `Hello SMG FLOWER, I am interested in commissioning floral work similar to "${work.title}" (${work.disciplineLabel}). Could you share design details?`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"

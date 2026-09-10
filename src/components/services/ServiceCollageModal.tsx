@@ -53,7 +53,7 @@ function ScrapbookStamp({ category = "ATELIER" }: { category?: string }) {
     <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-[#8E785C]/45 flex items-center justify-center pointer-events-none select-none rotate-12">
       <div className="absolute inset-1 rounded-full border border-[#8E785C]/30 flex flex-col items-center justify-center p-1 text-center">
         <span className="text-[6.5px] sm:text-[7px] font-mono tracking-widest uppercase text-[#8E785C] font-semibold">
-          FLEURISSANT
+          SMG FLOWER
         </span>
         <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8E785C] my-0.5" />
         <span className="text-[5.5px] sm:text-[6.5px] font-mono uppercase text-[#8E785C]/80">
@@ -244,7 +244,7 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
                   <div className="pt-1 px-1 flex items-center justify-between border-t border-[#F3ECE0]">
                     <div>
                       <span className="font-calligraphy text-base text-[#0D1E17] block leading-tight">
-                        L&apos;Atelier Fleurissant Selection ♡
+                        SMG FLOWER Selection ♡
                       </span>
                       <span className="text-[10px] font-mono text-[#8E785C]">
                         Tap anywhere to send enquiry on WhatsApp
@@ -335,11 +335,6 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                        {/* Code Badge */}
-                        <span className="absolute top-1.5 left-1.5 bg-[#0D1E17]/90 text-white text-[9px] font-mono px-1.5 py-0.5 rounded-xs z-10">
-                          {item.code}
-                        </span>
-
                         {/* WhatsApp Pill */}
                         <span className="absolute top-1.5 right-1.5 bg-[#25D366] text-white p-1 rounded-full shadow-md z-10 group-hover:scale-110 transition-transform">
                           <MessageCircle className="w-2.5 h-2.5 fill-current" />
@@ -397,8 +392,8 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
                     <Image src={majorItem.src} alt={majorItem.title} fill priority className="object-cover" sizes="90vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
 
-                    <span className="absolute top-2 left-2 bg-[#0D1E17] text-white text-[10px] font-mono px-2 py-0.5 rounded-full border border-white/20">
-                      {majorItem.code} • MAJOR
+                    <span className="absolute top-2 left-2 bg-[#0D1E17] text-white text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-white/20">
+                      SIGNATURE PIECE
                     </span>
 
                     <span className="absolute top-2 right-2 bg-[#25D366] text-white text-[10px] px-2.5 py-1 rounded-full flex items-center gap-1 font-medium shadow-md">
@@ -481,10 +476,6 @@ export default function ServiceCollageModal({ config, onClose }: ServiceCollageM
                   <div className="relative aspect-square w-full rounded-xs overflow-hidden bg-[#FAF6F0] mb-2">
                     <Image src={item.src} alt={item.title} fill className="object-cover" sizes="45vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                    <span className="absolute top-1 left-1 bg-[#0D1E17]/90 text-white text-[8px] font-mono px-1 py-0.5 rounded-xs">
-                      {item.code}
-                    </span>
 
                     <span className="absolute top-1 right-1 bg-[#25D366] text-white p-1 rounded-full shadow-md">
                       <MessageCircle className="w-2.5 h-2.5 fill-current" />

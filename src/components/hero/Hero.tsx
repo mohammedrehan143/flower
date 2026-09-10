@@ -1,13 +1,22 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { SHOP_CONFIG } from "@/config/shop";
 
-const CATEGORIES = [
+interface HeroCategory {
+  name: string;
+  serviceId: string;
+  category: string;
+  icon: React.ReactNode;
+}
+
+const CATEGORIES: HeroCategory[] = [
   {
     name: "Bouquets",
-    href: "#editorial-scroll",
+    serviceId: "hand-bouquets",
+    category: "Bouquets",
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 text-[#B86874] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M12 3c-1.5 2-2.5 3.5-2.5 5 0 1.5 1 2.5 2.5 2.5s2.5-1 2.5-2.5c0-1.5-1-3-2.5-5z" fill="#FCECEF" />
@@ -22,7 +31,8 @@ const CATEGORIES = [
   },
   {
     name: "Occasions",
-    href: "#editorial-scroll",
+    serviceId: "wedding-florals",
+    category: "Weddings",
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 text-[#B86874] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M12 4c-3 0-5 3.5-5 7 0 3 2.5 5 5 5s5-2 5-5c0-3.5-2-7-5-7z" fill="#FCECEF" />
@@ -37,7 +47,8 @@ const CATEGORIES = [
   },
   {
     name: "Gifts",
-    href: "#services",
+    serviceId: "custom-arrangements",
+    category: "Custom",
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 text-[#B86874] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="4" y="8" width="16" height="13" rx="2" fill="#FCECEF" />
@@ -51,7 +62,8 @@ const CATEGORIES = [
   },
   {
     name: "Plants",
-    href: "#gallery",
+    serviceId: "plants-greenery",
+    category: "Plants",
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 text-[#B86874] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M8 17l1 4h6l1-4" strokeLinecap="round" strokeLinejoin="round" fill="#FCECEF" />
@@ -67,39 +79,98 @@ const CATEGORIES = [
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement | null>(null);
+  const [showScrollPrompt, setShowScrollPrompt] = useState(false);
+
+  // Auto dismiss scroll prompt on user scroll
+  useEffect(() => {
+    if (!showScrollPrompt) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 320) {
+        setShowScrollPrompt(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      setShowScrollPrompt(false);
+    }, 9000);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
+  }, [showScrollPrompt]);
+
+  // Handle clicking "Explore Collections"
+  const handleExploreClick = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setShowScrollPrompt(true);
+
+    const target = document.getElementById("editorial-scroll") || document.getElementById("services");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollBy({ top: 600, behavior: "smooth" });
+    }
+  };
+
+  // Handle clicking Category Buttons (Bouquets, Occasions, Gifts, Plants) -> Open that section in Our Services
+  const handleCategoryClick = (e: React.MouseEvent, serviceId: string, category: string) => {
+    e.preventDefault();
+
+    // 1. Dispatch custom event for ServicesSection
+    window.dispatchEvent(
+      new CustomEvent("openServiceCollage", {
+        detail: { serviceId, category },
+      })
+    );
+
+    // 2. Smoothly scroll to the services section
+    const servicesEl = document.getElementById("services");
+    if (servicesEl) {
+      servicesEl.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.hash = "services";
+    }
+  };
 
   return (
     <section
       ref={containerRef}
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#FAF7F2] text-[#0D1E17]"
-      aria-label="Floraé Botanical Artistry Hero"
+      aria-label="SMG FLOWER Botanical Artistry Hero"
     >
       {/* 1. Mobile Background Image: herobg.png */}
-      <div className="md:hidden absolute inset-0 z-0">
-        <Image
-          src="/herobg.png"
-          alt="Floraé Italian Lake Villa Terrace Background"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        {/* Delicate ambient overlay for crisp text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/75 via-white/35 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 z-0 w-full h-full min-h-screen opacity-100 md:opacity-0 pointer-events-none transition-opacity duration-300">
+        <div className="relative w-full h-full min-h-screen">
+          <Image
+            src="/herobg.png"
+            alt="SMG FLOWER Terrace Background"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Delicate ambient overlay for crisp text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/75 via-white/35 to-transparent pointer-events-none" />
+        </div>
       </div>
 
       {/* 2. Desktop Background Image: deskbg.png */}
-      <div className="hidden md:block absolute inset-0 z-0">
-        <Image
-          src="/deskbg.png"
-          alt="Floraé Italian Lake Villa Terrace Panoramic Background"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        {/* Soft left gradient for typography readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent pointer-events-none w-3/5" />
+      <div className="absolute inset-0 z-0 w-full h-full min-h-screen opacity-0 md:opacity-100 pointer-events-none transition-opacity duration-300">
+        <div className="relative w-full h-full min-h-screen">
+          <Image
+            src="/deskbg.png"
+            alt="SMG FLOWER Terrace Panoramic Background"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Soft left gradient for typography readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent pointer-events-none w-3/5" />
+        </div>
       </div>
 
       {/* Top Header Row (matches hero.png) */}
@@ -121,7 +192,7 @@ export default function Hero() {
           </svg>
           <div className="flex flex-col">
             <span className="font-serif text-2xl sm:text-3xl font-normal tracking-wide text-[#0D1E17] leading-none">
-              Floraé
+              {SHOP_CONFIG.name}
             </span>
             <span className="text-[7.5px] sm:text-[8.5px] tracking-[0.24em] uppercase text-[#0D1E17]/80 font-sans font-medium mt-1">
               Flowers Make Life Brighter
@@ -171,9 +242,10 @@ export default function Hero() {
 
             {/* Explore Collections CTA Button */}
             <div className="pt-2 sm:pt-4">
-              <a
-                href="#editorial-scroll"
-                className="inline-flex items-center gap-3.5 pl-6 pr-2.5 py-2.5 sm:pl-8 sm:pr-3 sm:py-3 rounded-full bg-[#B86874] hover:bg-[#A55663] text-white shadow-md hover:shadow-xl transition-all duration-300 group"
+              <button
+                type="button"
+                onClick={handleExploreClick}
+                className="inline-flex items-center gap-3.5 pl-6 pr-2.5 py-2.5 sm:pl-8 sm:pr-3 sm:py-3 rounded-full bg-[#B86874] hover:bg-[#A55663] text-white shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer focus:outline-none"
               >
                 <span className="font-sans text-sm sm:text-base font-medium tracking-wide">
                   Explore Collections
@@ -181,7 +253,7 @@ export default function Hero() {
                 <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#B86874] flex items-center justify-center group-hover:translate-x-1 transition-transform shadow-xs">
                   <ArrowRight className="w-4 h-4" />
                 </span>
-              </a>
+              </button>
             </div>
 
             {/* Value Props Row (3 Icons matching hero.png) */}
@@ -243,12 +315,14 @@ export default function Hero() {
 
         {/* Bottom Floating Category Pills Drawer (matching hero.png) */}
         <div className="relative z-10 mt-8 sm:mt-12 max-w-xl">
-          <div className="bg-white/85 backdrop-blur-md rounded-3xl sm:rounded-full px-4 sm:px-6 py-2.5 sm:py-3 shadow-lg border border-white/70 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="bg-white/90 backdrop-blur-md rounded-3xl sm:rounded-full px-4 sm:px-6 py-2.5 sm:py-3 shadow-lg border border-white/70 flex items-center justify-between gap-2 sm:gap-4">
             {CATEGORIES.map((cat) => (
-              <a
+              <button
                 key={cat.name}
-                href={cat.href}
+                type="button"
+                onClick={(e) => handleCategoryClick(e, cat.serviceId, cat.category)}
                 className="flex flex-col items-center gap-1 group cursor-pointer focus:outline-none"
+                title={`Explore ${cat.name} in Our Services`}
               >
                 <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border-2 border-white shadow-xs group-hover:scale-108 group-hover:border-[#B86874] transition-all bg-white/95 group-hover:bg-[#FCECEF] flex items-center justify-center">
                   {cat.icon}
@@ -256,34 +330,44 @@ export default function Hero() {
                 <span className="text-[10px] sm:text-xs font-sans font-medium text-[#0D1E17] group-hover:text-[#B86874] transition-colors">
                   {cat.name}
                 </span>
-              </a>
+              </button>
             ))}
 
-            {/* Arrow Next Button */}
-            <a
-              href="#editorial-scroll"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-xs flex items-center justify-center text-[#0D1E17] hover:bg-[#B86874] hover:text-white transition-all shrink-0 ml-1 border border-white/60"
-              aria-label="Explore more categories"
+            {/* Arrow Next Button -> Opens All Services */}
+            <button
+              type="button"
+              onClick={(e) => handleCategoryClick(e, "hand-bouquets", "All")}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-xs flex items-center justify-center text-[#0D1E17] hover:bg-[#B86874] hover:text-white transition-all shrink-0 ml-1 border border-white/60 cursor-pointer"
+              aria-label="Explore all services"
+              title="Open Our Services"
             >
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Bottom Scroll Down & Tagline Row (matching hero.png) */}
       <footer className="relative z-10 w-full px-4 sm:px-8 pb-5 sm:pb-7 flex items-end justify-between text-[#0D1E17]">
-        {/* Scroll Down */}
-        <div className="flex flex-col items-center gap-1.5">
-          <span className="text-[9px] tracking-[0.3em] uppercase font-mono text-[#0D1E17]/75">
-            SCROLL DOWN
-          </span>
-          <div className="w-[1px] h-5 bg-[#0D1E17]/30" />
-          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B86874]" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M12 2C9 5 5 9 5 13a7 7 0 0 0 14 0c0-4-4-8-7-11z" />
-            <path d="M12 13v9" />
-          </svg>
-        </div>
+        {/* Prominent, interactive Scroll Down Button */}
+        <button
+          type="button"
+          onClick={handleExploreClick}
+          className="group flex flex-col items-center gap-2 cursor-pointer focus:outline-none transition-transform active:scale-95 text-left"
+          aria-label="Scroll down to explore collections"
+        >
+          <div className="flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border-2 border-[#0D1E17]/20 shadow-md group-hover:bg-[#0D1E17] group-hover:border-[#0D1E17] group-hover:text-white transition-all duration-300">
+            <span className="text-xs sm:text-sm tracking-[0.22em] uppercase font-sans font-bold text-[#0D1E17] group-hover:text-[#FAF7F2]">
+              SCROLL DOWN TO EXPLORE
+            </span>
+            <div className="w-6 h-6 rounded-full bg-[#B86874] text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#B86874] transition-colors shadow-xs">
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M12 4v14M19 11l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div className="w-[2px] h-6 bg-gradient-to-b from-[#B86874] via-[#C5A880] to-transparent animate-pulse" />
+        </button>
 
         {/* Right Inspirational Quote */}
         <div className="hidden sm:block text-right">
@@ -293,6 +377,63 @@ export default function Hero() {
           </p>
         </div>
       </footer>
+
+      {/* Prominent Floating "Scroll Down" Notice on Explore Collections Click */}
+      {showScrollPrompt && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-lg transition-all duration-300"
+        >
+          <div className="relative overflow-hidden rounded-2xl bg-[#0D1E17] text-[#FAF7F2] p-4 sm:p-5 shadow-[0_25px_60px_rgba(13,30,23,0.45)] border-2 border-[#C5A880] backdrop-blur-xl flex items-center justify-between gap-3 sm:gap-4 ring-4 ring-[#C5A880]/20 animate-bounce-subtle">
+            {/* Subtle decorative glow */}
+            <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#B86874]/30 blur-2xl pointer-events-none" />
+
+            <button
+              type="button"
+              onClick={handleExploreClick}
+              className="flex items-center gap-3.5 text-left group flex-1 cursor-pointer focus:outline-none"
+            >
+              <div className="w-12 h-12 rounded-full bg-[#B86874] group-hover:bg-[#A55663] text-white flex items-center justify-center shrink-0 shadow-lg transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M12 4v14M19 11l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.25em] uppercase text-[#C5A880]">
+                    EXPLORE COLLECTIONS
+                  </span>
+                  <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-ping" />
+                </div>
+                <p className="font-serif text-base sm:text-lg font-medium text-white leading-tight mt-0.5">
+                  Scroll Down To View
+                  <span className="font-calligraphy text-lg sm:text-xl text-[#C5A880] ml-1.5 font-normal">
+                    Our Collections ↓
+                  </span>
+                </p>
+                <p className="text-[11px] sm:text-xs text-[#FAF7F2]/80 font-sans mt-0.5">
+                  Scroll or swipe down to see bouquets, wedding decor & bespoke arrangements
+                </p>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowScrollPrompt(false);
+              }}
+              className="text-[#FAF7F2]/60 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+              aria-label="Dismiss scroll prompt"
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

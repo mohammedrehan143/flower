@@ -1,4 +1,4 @@
-# Fleurissant — Haute Botanique & Floral Scenography
+# SMG FLOWER — Haute Botanique & Floral Scenography
 
 A bespoke luxury floral atelier web application built with [Next.js](https://nextjs.org) (App Router, Turbopack) and [Tailwind CSS](https://tailwindcss.com).
 

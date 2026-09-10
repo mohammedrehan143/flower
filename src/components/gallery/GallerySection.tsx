@@ -217,7 +217,7 @@ export default function GallerySection() {
     const fullImageUrl = photo.src.startsWith("http") ? photo.src : `${origin}${photo.src}`;
 
     const message = [
-      `Hello Fleurissant Atelier,`,
+      `Hello SMG FLOWER,`,
       ``,
       `I saw this design in your *Moments in Bloom* gallery and would like to inquire:`,
       `💐 Piece: *${photo.title}*`,
@@ -301,6 +301,8 @@ export default function GallerySection() {
                 src={photo.src}
                 alt={photo.title}
                 fill
+                loading={index === 0 ? "eager" : "lazy"}
+                priority={index === 0}
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />

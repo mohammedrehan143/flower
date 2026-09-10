@@ -183,7 +183,7 @@ export default function QuickViewModal() {
 
               <a
                 href={getWhatsAppInquiryLink(
-                  `Hello Fleurissant, I would like to inquire about commissioning a bespoke project similar to "${selectedWork.title}" (${selectedWork.disciplineLabel}).`
+                  `Hello SMG FLOWER, I would like to inquire about commissioning a bespoke project similar to "${selectedWork.title}" (${selectedWork.disciplineLabel}).`
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
